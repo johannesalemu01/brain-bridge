@@ -35,7 +35,7 @@ export default function Sidebar() {
     <aside className="fixed inset-y-0 left-0 w-64 bg-black/40 backdrop-blur-xl border-r border-white/10 flex flex-col z-40">
       <div className="h-20 flex items-center px-6 border-b border-white/10">
         <Link href="/" className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500">
+          <div className="p-1.5 rounded-lg bg-gradient-to-br from-amber-500 to-teal-600">
             <BrainCircuit className="w-5 h-5 text-white" />
           </div>
           <span className="text-xl font-bold text-white tracking-tight">BrainBridge</span>
@@ -56,7 +56,7 @@ export default function Sidebar() {
                 isActive ? "active" : ""
               )}
             >
-              <Icon className={cn("w-5 h-5", isActive ? "text-violet-400" : "text-white/40")} />
+              <Icon className={cn("w-5 h-5", isActive ? "text-amber-400" : "text-white/40")} />
               {item.name}
             </Link>
           );
@@ -75,7 +75,7 @@ export default function Sidebar() {
         
         {user && (
             <div className="mt-4 flex items-center gap-3 px-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-500 to-cyan-500 flex flex-col items-center justify-center text-white font-bold">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-teal-600 flex flex-col items-center justify-center text-white font-bold">
                     {user.name.charAt(0)}
                 </div>
                 <div className="overflow-hidden">
