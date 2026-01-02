@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         premium:
-          'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg hover:shadow-violet-500/25 transition-all active:scale-95',
+          'bg-gradient-to-r from-amber-500 to-orange-600 text-amber-950 font-semibold shadow-lg shadow-amber-600/25 hover:from-amber-400 hover:to-orange-500 transition-all active:scale-95',
       },
       size: {
         default: 'h-9 px-4 py-2',
@@ -48,7 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size }), className)}
         ref={ref}
         {...props}
       />

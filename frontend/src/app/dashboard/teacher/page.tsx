@@ -100,10 +100,10 @@ export default function TeacherPanel() {
                 {pendingQas.map((qa) => (
                     <Card key={qa._id} className={cn(
                         "p-0 border-white/5 overflow-hidden transition-all duration-300",
-                        verifyingId === qa._id ? "border-violet-500/50 shadow-2xl shadow-violet-500/10" : "hover:border-amber-500/30"
+                        verifyingId === qa._id ? "border-amber-500/50 shadow-2xl shadow-amber-500/10" : "hover:border-amber-500/30"
                     )}>
                         <div className="p-8 md:p-10 relative">
-                            <div className="absolute top-6 right-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-amber-500 bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/20 shadow-lg shadow-amber-500/5 ring-4 ring-[#0b1021]">
+                            <div className="absolute top-6 right-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-amber-500 bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/20 shadow-lg shadow-amber-500/5 ring-4 ring-background">
                                 <ShieldAlert className="w-3.5 h-3.5" /> High Urgency
                             </div>
                             
@@ -111,7 +111,7 @@ export default function TeacherPanel() {
                                 <span className="bg-white/5 px-2 py-1 rounded">{qa.subject}</span>
                                 <span>|</span>
                                 <span className={cn(
-                                    qa.language === 'am' ? 'text-cyan-400' : 'text-violet-400'
+                                    qa.language === 'am' ? 'text-teal-400' : 'text-amber-400'
                                 )}>{qa.language === 'am' ? 'አማርኛ' : 'English'}</span>
                             </div>
 
@@ -122,9 +122,9 @@ export default function TeacherPanel() {
                             {verifyingId === qa._id ? (
                                 <div className="space-y-6 animate-in slide-in-from-bottom-2 duration-300">
                                     <div className="space-y-3">
-                                        <label className="text-xs font-black uppercase tracking-widest text-violet-400 ml-1">Edit AI Answer for Publication</label>
+                                        <label className="text-xs font-black uppercase tracking-widest text-amber-400 ml-1">Edit AI Answer for Publication</label>
                                         <textarea 
-                                          className="w-full min-h-[180px] rounded-2xl border border-violet-500/20 bg-violet-500/5 p-6 text-white text-base focus:outline-none focus:border-violet-500/50 transition-all resize-y shadow-inner custom-scrollbar leading-relaxed"
+                                          className="w-full min-h-[180px] rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6 text-white text-base focus:outline-none focus:border-amber-500/50 transition-all resize-y shadow-inner custom-scrollbar leading-relaxed"
                                           value={editedAnswer}
                                           onChange={e => setEditedAnswer(e.target.value)}
                                         />
@@ -141,8 +141,8 @@ export default function TeacherPanel() {
                             ) : (
                                 <div className="space-y-8">
                                     <div className="bg-white/5 p-6 rounded-3xl border border-white/5 opacity-80 group/draft relative transition-all hover:bg-white/[0.08] hover:opacity-100">
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/5 rounded-full blur-[40px] -z-10" />
-                                        <div className="flex items-center gap-2 mb-4 text-violet-400/60 font-black text-[10px] uppercase tracking-widest pb-3 border-b border-white/5 flex items-center gap-2">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-amber-600/5 rounded-full blur-[40px] -z-10" />
+                                        <div className="flex items-center gap-2 mb-4 text-amber-400/60 font-black text-[10px] uppercase tracking-widest pb-3 border-b border-white/5 flex items-center gap-2">
                                             <BrainCircuit className="w-4 h-4" /> AI Generated Draft
                                         </div>
                                         <p className="text-white/80 text-base leading-relaxed whitespace-pre-wrap">{qa.aiAnswer}</p>

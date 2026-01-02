@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { voiceApi } from "@/lib/api";
-import { Mic, Globe, Loader2, Volume2, Save, Play, Square, Languages, ArrowRight } from "lucide-react";
+import { Mic, Globe, Loader2, Volume2, Save, Play, Square, Languages, ArrowRight, BrainCircuit } from "lucide-react";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -147,7 +147,7 @@ export default function VoicePage() {
              onClick={() => setLanguage("en")}
              className={cn(
                "px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300",
-               language === "en" ? "bg-violet-500 text-white shadow-lg shadow-violet-500/20" : "text-white/40 hover:text-white"
+               language === "en" ? "bg-amber-500 text-white shadow-lg shadow-amber-500/20" : "text-white/40 hover:text-white"
              )}
            >
              ENG
@@ -156,7 +156,7 @@ export default function VoicePage() {
              onClick={() => setLanguage("am")}
              className={cn(
                 "px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300",
-                language === "am" ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/20" : "text-white/40 hover:text-white"
+                language === "am" ? "bg-teal-500 text-white shadow-lg shadow-teal-500/20" : "text-white/40 hover:text-white"
              )}
            >
              አማርኛ
@@ -166,7 +166,7 @@ export default function VoicePage() {
 
       <Card className="p-0 border-white/5 overflow-hidden">
         <div className="p-8 md:p-16 flex flex-col items-center justify-center text-center relative min-h-[450px]">
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-violet-600/10 rounded-full blur-[100px] -z-10" />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-amber-600/10 rounded-full blur-[100px] -z-10" />
            
            {!isRecording && !processing && (
                <div className="mb-12 animate-in fade-in zoom-in-95 duration-500">
@@ -184,7 +184,7 @@ export default function VoicePage() {
                <div className="mb-12 w-full max-w-2xl animate-in fade-in duration-300">
                    <div className="flex items-end justify-center gap-1.5 h-20 mb-10">
                        {[...Array(24)].map((_, i) => (
-                           <div key={i} className="w-1.5 bg-cyan-400 rounded-full animate-voice-pulse" style={{ animationDelay: `${i * 0.08}s` }} />
+                           <div key={i} className="w-1.5 bg-teal-400 rounded-full animate-voice-pulse" style={{ animationDelay: `${i * 0.08}s` }} />
                        ))}
                    </div>
                    <p className="text-2xl text-white font-medium italic tracking-tight">"{transcript || "Listening to your question..."}"</p>
@@ -194,10 +194,10 @@ export default function VoicePage() {
            {processing && (
                <div className="mb-12 flex flex-col items-center justify-center min-h-[160px] animate-in fade-in duration-300">
                    <div className="relative">
-                        <div className="w-16 h-16 rounded-full border-4 border-violet-500/20 border-t-violet-500 animate-spin mb-6" />
-                        <BrainCircuit className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-3 w-6 h-6 text-violet-400" />
+                        <div className="w-16 h-16 rounded-full border-4 border-amber-500/20 border-t-amber-500 animate-spin mb-6" />
+                        <BrainCircuit className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-3 w-6 h-6 text-amber-400" />
                    </div>
-                   <p className="text-violet-300 font-bold tracking-widest uppercase text-xs">AI Synthesis Processing...</p>
+                   <p className="text-amber-300 font-bold tracking-widest uppercase text-xs">AI Synthesis Processing...</p>
                </div>
            )}
 
@@ -205,10 +205,10 @@ export default function VoicePage() {
                <button 
                  onClick={isRecording ? handleStopRecording : handleStartRecording}
                  className={cn(
-                   "w-28 h-28 rounded-full flex items-center justify-center shadow-2xl shadow-violet-500/20 transition-all duration-500 cursor-pointer group active:scale-90",
+                   "w-28 h-28 rounded-full flex items-center justify-center shadow-2xl shadow-amber-500/20 transition-all duration-500 cursor-pointer group active:scale-90",
                    isRecording 
                    ? 'bg-rose-500 hover:bg-rose-600 scale-110 shadow-rose-500/40' 
-                   : 'bg-gradient-to-tr from-violet-600 to-indigo-600 hover:scale-105'
+                   : 'bg-gradient-to-tr from-amber-600 to-orange-600 hover:scale-105'
                  )}
                >
                  {isRecording ? (
@@ -225,7 +225,7 @@ export default function VoicePage() {
                      type="text" 
                      value={transcript}
                      onChange={e => setTranscript(e.target.value)}
-                     className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 pr-20 text-white text-lg focus:outline-none focus:border-violet-500/50 shadow-2xl transition-all"
+                     className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 pr-20 text-white text-lg focus:outline-none focus:border-amber-500/50 shadow-2xl transition-all"
                      placeholder="Type or edit your question..."
                    />
                    <Button type="submit" variant="premium" size="icon" className="absolute right-2.5 top-1/2 -translate-y-1/2 h-12 w-12 rounded-xl">
@@ -254,15 +254,15 @@ export default function VoicePage() {
                                  <div className="flex items-center gap-3">
                                      <span className={cn(
                                          "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest",
-                                         s.language === 'am' ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20' : 'bg-violet-500/10 text-violet-400 border border-violet-500/20'
+                                         s.language === 'am' ? 'bg-teal-500/10 text-teal-400 border border-teal-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
                                      )}>
                                          {s.language === 'am' ? 'Amharic' : 'English'}
                                      </span>
                                      <span className="text-white/30 text-xs font-medium">{new Date(s.createdAt).toLocaleString()}</span>
                                  </div>
-                                 <h3 className="text-xl font-bold text-white leading-tight underline decoration-white/0 decoration-2 underline-offset-4 group-hover:decoration-violet-500/50 transition-all">"{s.transcript}"</h3>
+                                 <h3 className="text-xl font-bold text-white leading-tight underline decoration-white/0 decoration-2 underline-offset-4 group-hover:decoration-amber-500/50 transition-all">"{s.transcript}"</h3>
                                  <div className="bg-white/5 p-5 rounded-2xl border border-white/5 relative group">
-                                     <div className="flex items-center gap-2 mb-3 text-violet-400/60 font-bold text-[10px] uppercase tracking-widest">
+                                     <div className="flex items-center gap-2 mb-3 text-amber-400/60 font-bold text-[10px] uppercase tracking-widest">
                                          <BrainCircuit className="w-3.5 h-3.5" /> AI Explanation
                                      </div>
                                      <p className="text-white/80 leading-relaxed text-sm">{s.aiResponse}</p>
@@ -286,7 +286,7 @@ export default function VoicePage() {
                                      disabled={s.savedToQA}
                                      className={cn(
                                          "w-full h-12 flex items-center gap-2 border-white/10 transition-all",
-                                         s.savedToQA ? "opacity-50 pointer-events-none" : "text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/10 hover:border-cyan-500/30"
+                                         s.savedToQA ? "opacity-50 pointer-events-none" : "text-teal-400 border-teal-500/20 hover:bg-teal-500/10 hover:border-teal-500/30"
                                      )}
                                  >
                                      <Save className="w-4 h-4" /> {s.savedToQA ? "Shared to Q&A" : "Share Feature"}

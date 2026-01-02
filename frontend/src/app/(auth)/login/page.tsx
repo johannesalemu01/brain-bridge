@@ -33,16 +33,16 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-[100px] -z-10" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-600/20 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-teal-600/20 rounded-full blur-[100px] -z-10" />
 
       <Card className="w-full max-w-md p-2 shadow-2xl relative z-10 border-white/5">
         <CardHeader className="flex flex-col items-center pb-8">
           <Link href="/" className="flex items-center gap-2 mb-6 transition-transform hover:scale-105">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 shadow-lg shadow-violet-500/20">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-amber-500 to-teal-600 shadow-lg shadow-amber-500/20">
               <BrainCircuit className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-white tracking-tight">BrainBridge<span className="text-cyan-400">AI</span></span>
+            <span className="text-2xl font-bold text-white tracking-tight">BrainBridge<span className="text-teal-400">AI</span></span>
           </Link>
           <CardTitle className="text-2xl font-bold text-white mb-2">Welcome Back</CardTitle>
           <CardDescription className="text-white/50 text-sm">Enter your credentials to continue</CardDescription>
@@ -94,7 +94,7 @@ export default function LoginPage() {
 
           <p className="text-center text-white/50 text-sm mt-8">
             Don't have an account?{" "}
-            <Link href="/register" className="text-violet-400 hover:text-violet-300 font-semibold transition-colors">
+            <Link href="/register" className="text-amber-400 hover:text-amber-300 font-semibold transition-colors">
               Create account
             </Link>
           </p>

@@ -79,7 +79,7 @@ export default function PlannerPage() {
         
         <Dialog open={showModal} onOpenChange={setShowModal}>
           <DialogTrigger asChild>
-            <Button variant="premium" size="lg" className="shadow-lg shadow-violet-500/20">
+            <Button variant="premium" size="lg" className="shadow-lg shadow-amber-500/20">
               <Sparkles className="w-5 h-5" />
               Generate New Plan
             </Button>
@@ -87,8 +87,8 @@ export default function PlannerPage() {
           <DialogContent className="max-w-xl">
             <DialogHeader>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-violet-500/20">
-                    <BrainCircuit className="w-6 h-6 text-violet-400" />
+                <div className="p-2 rounded-lg bg-amber-500/20">
+                    <BrainCircuit className="w-6 h-6 text-amber-400" />
                 </div>
                 <DialogTitle>Generate Study Plan</DialogTitle>
               </div>
@@ -110,7 +110,7 @@ export default function PlannerPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <label className="text-xs font-semibold uppercase tracking-wider text-white/40 ml-1">Subjects to focus on</label>
-                  <Button type="button" variant="ghost" size="sm" onClick={() => setSubjects([...subjects, {name: '', weakLevel: 3}])} className="text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10">
+                  <Button type="button" variant="ghost" size="sm" onClick={() => setSubjects([...subjects, {name: '', weakLevel: 3}])} className="text-teal-400 hover:text-teal-300 hover:bg-teal-500/10">
                     <Plus className="w-3.5 h-3.5" /> Add Subject
                   </Button>
                 </div>
@@ -131,7 +131,7 @@ export default function PlannerPage() {
                         <span className="text-[10px] text-white/40 mb-1 w-20 text-center">Weakness ({sub.weakLevel})</span>
                         <input 
                           type="range" min="1" max="5" 
-                          className="w-20 h-1.5 accent-violet-500 bg-white/10 rounded-full appearance-none cursor-pointer" 
+                          className="w-20 h-1.5 accent-amber-500 bg-white/10 rounded-full appearance-none cursor-pointer" 
                           value={sub.weakLevel}
                           onChange={e => {
                             const newSubs = [...subjects];
@@ -162,8 +162,8 @@ export default function PlannerPage() {
 
       {plans.length === 0 ? (
         <Card className="flex flex-col items-center justify-center p-16 text-center border-dashed border-2 border-white/10 mt-10 bg-white/[0.02]">
-          <div className="w-20 h-20 rounded-full bg-violet-500/10 flex items-center justify-center mb-6">
-            <BookOpen className="w-10 h-10 text-violet-400" />
+          <div className="w-20 h-20 rounded-full bg-amber-500/10 flex items-center justify-center mb-6">
+            <BookOpen className="w-10 h-10 text-amber-400" />
           </div>
           <CardTitle className="text-2xl mb-3">No active study plans</CardTitle>
           <CardDescription className="max-w-md text-lg mb-8">
@@ -176,9 +176,9 @@ export default function PlannerPage() {
       ) : (
         <div className="space-y-12 mt-10">
           {plans.map((plan) => (
-            <Card key={plan._id} className="p-0 border-white/5 overflow-hidden shadow-2xl shadow-violet-500/5">
+            <Card key={plan._id} className="p-0 border-white/5 overflow-hidden shadow-2xl shadow-amber-500/5">
               <div className="p-6 md:p-10 relative">
-                <div className="absolute top-0 right-0 w-80 h-80 bg-violet-600/5 rounded-full blur-[100px] -z-10" />
+                <div className="absolute top-0 right-0 w-80 h-80 bg-amber-600/5 rounded-full blur-[100px] -z-10" />
                 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-white/5 pb-8 mb-8">
                   <div className="flex-1">
@@ -188,10 +188,10 @@ export default function PlannerPage() {
                       </div>
                       <div className="flex flex-wrap items-center gap-6 text-sm text-white/50">
                           <span className="flex items-center gap-2 font-medium bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
-                            <Calendar className="w-4 h-4 text-violet-400"/> Exam Date: <span className="text-white">{format(new Date(plan.examDate), 'MMMM dd, yyyy')}</span>
+                            <Calendar className="w-4 h-4 text-amber-400"/> Exam Date: <span className="text-white">{format(new Date(plan.examDate), 'MMMM dd, yyyy')}</span>
                           </span>
                       </div>
-                      <Card className="mt-6 bg-white/5 border-violet-500/20 p-4 border-l-4 rounded-xl">
+                      <Card className="mt-6 bg-white/5 border-amber-500/20 p-4 border-l-4 rounded-xl">
                         <p className="text-white/70 leading-relaxed italic text-sm">AI Recommendation: {plan.aiSummary}</p>
                       </Card>
                   </div>
@@ -199,7 +199,7 @@ export default function PlannerPage() {
                   <div className="w-full md:w-64 space-y-4">
                       <div className="flex justify-between items-end">
                           <span className="text-white/40 text-sm font-semibold uppercase tracking-wider">Overall Progress</span>
-                          <span className="text-violet-400 font-black text-2xl">{plan.progressPercent}%</span>
+                          <span className="text-amber-400 font-black text-2xl">{plan.progressPercent}%</span>
                       </div>
                       <Progress value={plan.progressPercent} className="h-3" />
                   </div>
@@ -212,10 +212,10 @@ export default function PlannerPage() {
                       <Card 
                         key={task._id} 
                         onClick={() => toggleTask(plan._id, task._id, task.status)}
-                        className={`group relative overflow-hidden transition-all duration-300 cursor-pointer hover:border-violet-500/30 ${
+                        className={`group relative overflow-hidden transition-all duration-300 cursor-pointer hover:border-amber-500/30 ${
                           isDone 
                           ? "bg-white/5 border-white/5 opacity-50 grayscale select-none" 
-                          : "bg-white/[0.03] border-white/10 hover:shadow-xl hover:shadow-violet-500/10 active:scale-95"
+                          : "bg-white/[0.03] border-white/10 hover:shadow-xl hover:shadow-amber-500/10 active:scale-95"
                         }`}
                       >
                         <div className="p-6">
@@ -225,19 +225,19 @@ export default function PlannerPage() {
                                  <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                                </div>
                              ) : (
-                               <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-violet-500/50 transition-colors">
-                                 <Circle className="w-5 h-5 text-white/20 group-hover:text-violet-400" />
+                               <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-amber-500/50 transition-colors">
+                                 <Circle className="w-5 h-5 text-white/20 group-hover:text-amber-400" />
                                </div>
                              )}
                              <span className={`text-[10px] font-black px-2.5 py-1 rounded-md border uppercase tracking-widest ${
                                task.priority === 'high' ? 'bg-red-500/10 text-red-400 border-red-500/20 shadow-[0_0_10px_rgba(239,68,68,0.1)]' : 
                                task.priority === 'medium' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 
-                               'bg-cyan-500/10 text-cyan-400 border-cyan-500/20'
+                               'bg-teal-500/10 text-teal-400 border-teal-500/20'
                              }`}>
                                {task.priority}
                              </span>
                           </div>
-                          <p className="text-xs font-bold text-violet-400 mb-1 uppercase tracking-wider">{task.subject}</p>
+                          <p className="text-xs font-bold text-amber-400 mb-1 uppercase tracking-wider">{task.subject}</p>
                           <h4 className={`text-white font-bold leading-tight mb-4 ${isDone ? "line-through opacity-50" : ""}`}>{task.topic}</h4>
                           <div className="flex justify-between items-center text-xs text-white/40 font-medium">
                              <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> {format(new Date(task.date), 'MMM dd')}</span>

@@ -1,183 +1,284 @@
 import Navbar from "@/components/Navbar";
-import { ArrowRight, BrainCircuit, Mic, ShieldCheck, Sparkles, Languages, Rocket, Zap, Heart } from "lucide-react";
+import {
+  ArrowRight,
+  BrainCircuit,
+  CheckCircle2,
+  Heart,
+  Languages,
+  Mic,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+
+const heroImage =
+  "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1400&q=85";
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#0b1021]">
+    <main className="min-h-screen overflow-x-hidden bg-[#faf6f0] text-slate-800">
       <Navbar />
 
-      {/* ── Hero Section ── */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 px-6 overflow-hidden">
-        {/* Animated Background Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-[140px] -z-10 animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[140px] -z-10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none -z-20" />
-        
-        <div className="container mx-auto text-center max-w-5xl animate-fade-in relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-10 border-violet-500/30 bg-violet-500/5 shadow-inner">
-            <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
-            <span className="text-xs font-black uppercase tracking-widest text-violet-300/80">Next-Gen AI Learning Platform</span>
-          </div>
-          
-          <h1 className="text-6xl md:text-8xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-            Study Smarter.<br />
-            <span className="gradient-text drop-shadow-[0_0_30px_rgba(167,139,250,0.3)]">Learn Faster.</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-white/50 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-            Empowering students with personalized AI study schedules, voice-based Amharic & English tutoring, and a teacher-verified knowledge base.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Button asChild variant="premium" size="xl" className="h-16 px-10 rounded-2xl group text-lg font-bold shadow-2xl shadow-violet-500/40">
-              <Link href="/register" className="flex items-center gap-2">
-                Get Started for Free
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="xl" className="h-16 px-10 rounded-2xl bg-white/5 border-white/10 text-white group hover:bg-white/10 font-bold transition-all">
-                <Link href="#features" className="flex items-center gap-2">
-                    Explore Platform
-                </Link>
-            </Button>
-          </div>
-        </div>
-        
-        {/* Floating Dashboard Preview */}
-        <div className="mt-32 container mx-auto relative z-10 animate-slide-up group">
-            <div className="w-full max-w-5xl mx-auto aspect-[16/10] rounded-[2.5rem] glass border-white/5 p-3 overflow-hidden shadow-[0_0_80px_rgba(139,92,246,0.15)] transition-all group-hover:scale-[1.01] group-hover:shadow-[0_0_100px_rgba(139,92,246,0.25)]">
-               <div className="w-full h-full bg-gradient-to-br from-violet-900/40 via-[#0b1021] to-cyan-900/40 rounded-[2rem] flex items-center justify-center relative overflow-hidden ring-1 ring-white/10 shadow-inner">
-                 <BrainCircuit className="w-40 h-40 text-white/10 animate-float opacity-50" />
-                 
-                 {/* Decorative elements representing features */}
-                 <div className="absolute top-1/4 left-1/4 p-5 glass rounded-2xl flex items-center gap-5 animate-float border-white/10 shadow-2xl" style={{ animationDelay: '0.5s' }}>
-                    <div className="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center border border-violet-500/30">
-                        <Rocket className="w-6 h-6 text-violet-400" />
-                    </div>
-                    <div>
-                        <p className="text-sm font-black text-white uppercase tracking-widest">AI Planner</p>
-                        <p className="text-[10px] text-white/40 uppercase font-black">98% Success Rate</p>
-                    </div>
-                 </div>
+      {/* Soft page backdrop */}
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(251,191,36,0.28),transparent),radial-gradient(ellipse_70%_50%_at_100%_50%,rgba(20,184,166,0.12),transparent),linear-gradient(180deg,#faf6f0_0%,#fffdfb_50%,#f7f0e8_100%)]" />
 
-                 <div className="absolute bottom-1/4 right-1/4 p-5 glass rounded-2xl flex items-center gap-5 animate-float border-white/10 shadow-2xl" style={{ animationDelay: '1.5s' }}>
-                    <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30">
-                        <Mic className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <div>
-                        <p className="text-sm font-black text-white uppercase tracking-widest">Voice Tutor</p>
-                        <p className="text-[10px] text-white/40 uppercase font-black">Multi-lingual AI</p>
-                    </div>
-                 </div>
-
-                 <div className="absolute top-1/2 right-20 p-5 glass rounded-2xl flex items-center gap-5 animate-float border-emerald-500/10 shadow-2xl" style={{ animationDelay: '2.5s' }}>
-                    <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                        <ShieldCheck className="w-6 h-6 text-emerald-400" />
-                    </div>
-                    <div>
-                        <p className="text-sm font-black text-white uppercase tracking-widest">Verified Q&A</p>
-                        <p className="text-[10px] text-white/40 uppercase font-black">Teacher Approved</p>
-                    </div>
-                 </div>
-               </div>
-            </div>
-        </div>
-      </section>
-
-      {/* ── Features Grid ── */}
-      <section id="features" className="py-32 bg-black/40 border-y border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent)] pointer-events-none" />
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Revolutionary <span className="text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.2)]">Learning</span> Tools</h2>
-            <p className="text-white/40 max-w-2xl mx-auto text-lg font-medium leading-relaxed">Everything you need to master your academics in one integrated platform.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Feature 1 */}
-            <Card className="p-10 hover:bg-white/10 transition-all duration-500 group border-white/5 hover:border-violet-500/30 hover:shadow-2xl hover:shadow-violet-500/10 active:scale-[0.98]">
-              <CardHeader className="p-0 mb-8">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-violet-500/20 flex items-center justify-center mb-8 border border-violet-500/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                    <BrainCircuit className="w-8 h-8 text-violet-400" />
-                </div>
-                <CardTitle className="text-2xl font-black uppercase tracking-tight">AI Study Planner</CardTitle>
-                <CardDescription className="text-base text-white/40 font-medium leading-relaxed">
-                    Personalized schedules generated by GPT-4o based on your exam dates and weak subjects. Dynamic adjustments included.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            {/* Feature 2 */}
-            <Card className="p-10 hover:bg-white/10 transition-all duration-500 group border-white/5 hover:border-cyan-500/30 hover:shadow-2xl hover:shadow-cyan-500/10 active:scale-[0.98] relative overflow-hidden">
-              <div className="absolute -top-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Languages className="w-64 h-64 text-cyan-400" />
+      {/* ── Hero ── */}
+      <section className="relative pt-32 pb-16 sm:pt-36 lg:pt-40 lg:pb-24">
+        <div className="container mx-auto max-w-6xl px-5 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-[1fr,1.05fr] lg:gap-16">
+            <div className="order-2 text-center lg:order-1 lg:text-left">
+              <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-amber-200/80 bg-white/70 px-4 py-2 shadow-sm backdrop-blur-sm lg:justify-start">
+                <Sparkles className="h-4 w-4 text-amber-600" />
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-900/80">
+                  Calm, curious, connected learning
+                </span>
               </div>
-              <CardHeader className="p-0 mb-8 relative z-10">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-cyan-500/20 flex items-center justify-center mb-8 border border-cyan-500/30 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
-                    <Mic className="w-8 h-8 text-cyan-400" />
-                </div>
-                <CardTitle className="text-2xl font-black uppercase tracking-tight">Voice Tutoring</CardTitle>
-                <CardDescription className="text-base text-white/40 font-medium leading-relaxed">
-                    Ask questions in <strong className="text-cyan-400">Amharic</strong> or English. Receive crystal-clear audio explanations instantly.
-                </CardDescription>
-              </CardHeader>
-            </Card>
 
-            {/* Feature 3 */}
-            <Card className="p-10 hover:bg-white/10 transition-all duration-500 group border-white/5 hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10 active:scale-[0.98]">
-              <CardHeader className="p-0 mb-8">
-                <div className="w-16 h-16 rounded-[1.25rem] bg-emerald-500/20 flex items-center justify-center mb-8 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                    <ShieldCheck className="w-8 h-8 text-emerald-400" />
+              <h1 className="mb-6 text-4xl font-black leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
+                Big ideas start
+                <br />
+                <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-teal-600 bg-clip-text text-transparent">
+                  where you are comfortable.
+                </span>
+              </h1>
+
+              <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-600 lg:mx-0 mx-auto">
+                BrainBridge blends AI study planning, voice tutoring in{" "}
+                <strong className="font-semibold text-teal-800">Amharic & English</strong>,
+                and teacher-verified answers — so students can learn deeply, even when
+                they&apos;re stretched out with a notebook and a dream.
+              </p>
+
+              <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
+                <Button
+                  asChild
+                  variant="premium"
+                  size="xl"
+                  className="h-14 rounded-2xl px-8 text-base shadow-lg shadow-orange-400/35"
+                >
+                  <Link href="/register" className="gap-2">
+                    Start learning free
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="xl"
+                  className="h-14 rounded-2xl border-slate-200 bg-white/80 px-8 text-base font-semibold text-slate-800 shadow-sm hover:bg-amber-50/80"
+                >
+                  <Link href="#features">Explore the platform</Link>
+                </Button>
+              </div>
+
+              <ul className="mt-10 flex flex-col gap-3 text-left text-sm font-medium text-slate-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8 lg:justify-start">
+                {[
+                  "Personalized AI study plans",
+                  "Voice-first Q&A in your language",
+                  "Teacher-approved explanations",
+                ].map((t) => (
+                  <li key={t} className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-teal-600" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="relative mx-auto max-w-xl lg:max-w-none">
+                <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-amber-200/60 via-orange-100/40 to-teal-200/50 blur-2xl lg:-inset-8" />
+                <div className="relative overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-[0_32px_64px_-12px_rgba(180,83,9,0.25)] ring-1 ring-amber-100">
+                  <div className="relative aspect-[4/5] w-full sm:aspect-[5/6] lg:aspect-[3/4]">
+                    <Image
+                      src={heroImage}
+                      alt="A student relaxed with a book, studying comfortably while lying down"
+                      fill
+                      className="object-cover object-[center_45%]"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-8">
+                      <p className="text-sm font-bold uppercase tracking-widest text-amber-200/95">
+                        Learning unplugged
+                      </p>
+                      <p className="mt-1 max-w-sm text-lg font-bold leading-snug text-white drop-shadow-md">
+                        Study in whatever position helps your mind breathe — we meet you
+                        there.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <CardTitle className="text-2xl font-black uppercase tracking-tight">Verified Q&A</CardTitle>
-                <CardDescription className="text-base text-white/40 font-medium leading-relaxed">
-                    Access a massive knowledge base of AI answers reviewed and verified by real expert teachers.
-                </CardDescription>
-              </CardHeader>
-            </Card>
+
+                <div className="absolute -bottom-4 -right-2 flex max-w-[200px] rotate-2 flex-col gap-1 rounded-2xl border border-white/90 bg-white/95 p-4 shadow-xl backdrop-blur sm:-right-4 lg:-bottom-6 lg:-right-8 lg:max-w-[220px]">
+                  <div className="flex items-center gap-2 text-amber-700">
+                    <BrainCircuit className="h-4 w-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wide">
+                      AI study buddy
+                    </span>
+                  </div>
+                  <p className="text-xs font-medium leading-relaxed text-slate-600">
+                    Plans that adapt when exams, moods, or schedules shift.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Stats / Impact Section ── */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[120px] -z-10" />
-        <div className="container mx-auto px-6 max-w-5xl">
-            <Card className="bg-gradient-to-br from-violet-600 to-indigo-700 border-0 p-12 text-center shadow-[0_0_100px_rgba(139,92,246,0.3)] relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] opacity-20 pointer-events-none" />
-                <CardContent className="relative z-10 p-0">
-                    <div className="inline-flex p-3 rounded-2xl bg-white/10 mb-8 group-hover:scale-110 transition-transform">
-                        <Zap className="w-10 h-10 text-white fill-white" />
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight">Experience Global-Standard AI Learning</h2>
-                    <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto font-medium">Join 5,000+ students already transforming their grades with BrainBridge AI Tutor.</p>
-                    <Button asChild variant="secondary" size="xl" className="bg-white text-violet-700 hover:bg-white/90 h-16 px-12 rounded-2xl font-black shadow-2xl transition-all active:scale-95">
-                        <Link href="/register">Start for Free Today</Link>
-                    </Button>
-                </CardContent>
-            </Card>
+      {/* ── Features ── */}
+      <section
+        id="features"
+        className="scroll-mt-28 border-y border-amber-100/80 bg-white/50 py-20 backdrop-blur-sm sm:py-28"
+      >
+        <div className="container mx-auto max-w-6xl px-5 lg:px-8">
+          <div className="mx-auto mb-16 max-w-2xl text-center">
+            <h2 className="mb-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              Everything you need to{" "}
+              <span className="text-transparent bg-gradient-to-r from-teal-700 to-amber-600 bg-clip-text">
+                actually enjoy
+              </span>{" "}
+              studying
+            </h2>
+            <p className="text-lg text-slate-600">
+              Clear tools, warm design, and serious intelligence — built for students,
+              teachers, and late-night cram sessions alike.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            <article
+              id="planner"
+              className="scroll-mt-28 rounded-3xl border border-amber-100/90 bg-gradient-to-b from-white to-amber-50/30 p-2 shadow-lg shadow-amber-900/5"
+            >
+              <Card className="border-0 bg-transparent shadow-none">
+                <CardHeader className="pb-4 pt-8">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-amber-800 ring-2 ring-amber-200/80">
+                    <BrainCircuit className="h-7 w-7" />
+                  </div>
+                  <CardTitle className="text-xl font-extrabold text-slate-900">
+                    AI study planner
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-slate-600">
+                    Exam dates, weak topics, and daily energy — turned into a schedule you
+                    can follow without burning out.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </article>
+
+            <article
+              id="voice"
+              className="scroll-mt-28 rounded-3xl border border-teal-100/90 bg-gradient-to-b from-white to-teal-50/35 p-2 shadow-lg shadow-teal-900/5"
+            >
+              <Card className="border-0 bg-transparent shadow-none">
+                <CardHeader className="pb-4 pt-8">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100 text-teal-800 ring-2 ring-teal-200/80">
+                    <Mic className="h-7 w-7" />
+                  </div>
+                  <CardTitle className="text-xl font-extrabold text-slate-900">
+                    Voice tutoring
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-slate-600">
+                    Ask out loud in{" "}
+                    <span className="font-semibold text-teal-800">Amharic or English</span>.
+                    Get patient, spoken guidance when reading on the couch or pacing the
+                    room.
+                  </CardDescription>
+                  <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-teal-800">
+                    <Languages className="h-4 w-4" />
+                    Multilingual by design
+                  </div>
+                </CardHeader>
+              </Card>
+            </article>
+
+            <article
+              id="qa"
+              className="scroll-mt-28 rounded-3xl border border-emerald-100/90 bg-gradient-to-b from-white to-emerald-50/30 p-2 shadow-lg shadow-emerald-900/5"
+            >
+              <Card className="border-0 bg-transparent shadow-none">
+                <CardHeader className="pb-4 pt-8">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-800 ring-2 ring-emerald-200/80">
+                    <ShieldCheck className="h-7 w-7" />
+                  </div>
+                  <CardTitle className="text-xl font-extrabold text-slate-900">
+                    Verified Q&amp;A
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed text-slate-600">
+                    AI drafts, teachers refine — so answers stay accurate when it matters
+                    most.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA band ── */}
+      <section className="py-20 sm:py-28">
+        <div className="container mx-auto max-w-4xl px-5 lg:px-8">
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 px-8 py-14 text-center shadow-2xl shadow-teal-900/30 sm:px-12">
+            <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-amber-400/25 blur-3xl" />
+            <div className="pointer-events-none absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-teal-400/20 blur-3xl" />
+            <h2 className="relative text-3xl font-black text-white sm:text-4xl">
+              Ready when you are — sprawled on the rug or at your desk.
+            </h2>
+            <p className="relative mx-auto mt-4 max-w-lg text-lg text-amber-100/90">
+              Join students using BrainBridge to plan smarter, ask boldly, and learn in
+              their own rhythm.
+            </p>
+            <Button
+              asChild
+              size="xl"
+              className="relative mt-10 h-14 rounded-2xl border-0 bg-gradient-to-r from-amber-400 to-orange-400 px-10 text-base font-bold text-amber-950 shadow-lg hover:from-amber-300 hover:to-orange-300"
+            >
+              <Link href="/register">Create your free account</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="py-20 border-t border-white/5 text-center px-6 bg-black/20">
-        <div className="flex items-center justify-center gap-3 mb-12">
-            <div className="p-2 rounded-xl bg-violet-500/20 border border-violet-500/30">
-              <BrainCircuit className="w-5 h-5 text-violet-400" />
+      <footer className="border-t border-amber-100/80 bg-[#f3ece4]/80 px-5 py-16 backdrop-blur-sm lg:px-8">
+        <div className="container mx-auto flex max-w-6xl flex-col items-center gap-10">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-teal-600 shadow-md">
+              <BrainCircuit className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-black text-white tracking-tight uppercase">BrainBridge<span className="text-cyan-400">AI</span></span>
+            <span className="text-xl font-black tracking-tight text-slate-900">
+              BrainBridge
+              <span className="text-teal-700">AI</span>
+            </span>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-500">
+            <Link href="#" className="transition hover:text-slate-800">
+              Privacy
+            </Link>
+            <Link href="#" className="transition hover:text-slate-800">
+              Terms
+            </Link>
+            <Link href="#" className="transition hover:text-slate-800">
+              Support
+            </Link>
+          </div>
+          <p className="flex items-center gap-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            © 2026 BrainBridge AI
+            <span className="inline-block h-1 w-1 rounded-full bg-slate-300" />
+            Built with <Heart className="inline h-3 w-3 fill-rose-500 text-rose-500" /> for learners
+          </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-8 mb-12">
-            <Link href="#" className="text-xs font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-xs font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="#" className="text-xs font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">Contact Support</Link>
-        </div>
-        <p className="text-white/20 text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-2">
-            © 2026 BrainBridge AI <div className="w-1 h-1 rounded-full bg-white/20" /> Built with <Heart className="w-2.5 h-2.5 text-rose-500 fill-rose-500" /> for the Hackathon
-        </p>
       </footer>
     </main>
   );

@@ -44,10 +44,10 @@ export default function DashboardHome() {
 
       {/* ── Stats ── */}
       <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="p-6 border-l-4 border-l-violet-500 bg-violet-500/5 hover:bg-violet-500/10 transition-colors">
+        <Card className="p-6 border-l-4 border-l-amber-500 bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-violet-500/20 flex items-center justify-center">
-              <Flame className="w-6 h-6 text-violet-400" />
+            <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center">
+              <Flame className="w-6 h-6 text-amber-400" />
             </div>
             <div>
               <p className="text-white/60 text-sm font-medium">Study Streak</p>
@@ -55,10 +55,10 @@ export default function DashboardHome() {
             </div>
           </div>
         </Card>
-        <Card className="p-6 border-l-4 border-l-cyan-500 bg-cyan-500/5 hover:bg-cyan-500/10 transition-colors">
+        <Card className="p-6 border-l-4 border-l-teal-500 bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
-              <Clock className="w-6 h-6 text-cyan-400" />
+            <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center">
+              <Clock className="w-6 h-6 text-teal-400" />
             </div>
             <div>
               <p className="text-white/60 text-sm font-medium">Hours Learned</p>
@@ -89,16 +89,16 @@ export default function DashboardHome() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link href="/dashboard/planner">
             <Card className="h-full hover:bg-white/10 transition-all group relative overflow-hidden border-white/5">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-[40px] group-hover:bg-violet-500/20 transition-colors" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-[40px] group-hover:bg-amber-500/20 transition-colors" />
               <CardHeader>
-                <div className="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <BookOpen className="w-6 h-6 text-violet-400" />
+                <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-6 h-6 text-amber-400" />
                 </div>
                 <CardTitle className="text-xl">AI Study Planner</CardTitle>
                 <CardDescription>View your personalized schedule and track your daily subjects.</CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
-                <span className="text-violet-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-amber-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
                   View Plan <ArrowRight className="w-4 h-4" />
                 </span>
               </CardContent>
@@ -107,16 +107,16 @@ export default function DashboardHome() {
 
           <Link href="/dashboard/voice">
             <Card className="h-full hover:bg-white/10 transition-all group relative overflow-hidden border-white/5">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-colors" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[40px] group-hover:bg-teal-500/20 transition-colors" />
               <CardHeader>
-                <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Mic className="w-6 h-6 text-cyan-400" />
+                <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Mic className="w-6 h-6 text-teal-400" />
                 </div>
                 <CardTitle className="text-xl">Voice Learning</CardTitle>
                 <CardDescription>Ask questions and learn using Amharic or English voice chat.</CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
-                <span className="text-cyan-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-teal-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
                   Start Session <ArrowRight className="w-4 h-4" />
                 </span>
               </CardContent>
@@ -152,8 +152,8 @@ export default function DashboardHome() {
           <CardContent className="space-y-4">
             {[1, 2, 3].map((_, i) => (
                <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-default">
-                   <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center hidden sm:flex">
-                       <Activity className="w-5 h-5 text-violet-400" />
+                   <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center hidden sm:flex">
+                       <Activity className="w-5 h-5 text-amber-400" />
                    </div>
                    <div className="flex-1">
                        <p className="text-white font-medium">Completed task: <span className="text-white/80">Calculus Integration Practice</span></p>

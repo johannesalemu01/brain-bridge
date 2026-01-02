@@ -73,12 +73,12 @@ export default function QAPage() {
       </div>
 
       {/* ── Ask Form ── */}
-      <Card className="p-0 border-violet-500/20 bg-violet-500/[0.02] shadow-2xl shadow-violet-500/5 relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-[100px] -z-10" />
+      <Card className="p-0 border-amber-500/20 bg-amber-500/[0.02] shadow-2xl shadow-amber-500/5 relative overflow-hidden">
+         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] -z-10" />
          <CardHeader className="p-8 pb-4">
              <CardTitle className="text-2xl flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-violet-500/20">
-                    <HelpCircle className="w-6 h-6 text-violet-400" />
+                <div className="p-2 rounded-xl bg-amber-500/20">
+                    <HelpCircle className="w-6 h-6 text-amber-400" />
                 </div>
                 Ask BrainBridge AI
              </CardTitle>
@@ -98,7 +98,7 @@ export default function QAPage() {
                     <select 
                       value={language}
                       onChange={e => setLanguage(e.target.value)}
-                      className="md:w-1/4 h-12 rounded-xl border border-white/10 bg-[#0b1021] px-4 py-2 text-sm text-white focus:ring-2 focus:ring-violet-500/50 appearance-none outline-none transition-all"
+                      className="md:w-1/4 h-12 rounded-xl border border-white/10 bg-card px-4 py-2 text-sm text-white focus:ring-2 focus:ring-amber-500/50 appearance-none outline-none transition-all"
                     >
                       <option value="en">English</option>
                       <option value="am">Amharic (አማርኛ)</option>
@@ -109,14 +109,14 @@ export default function QAPage() {
                       required
                       value={question}
                       onChange={e => setQuestion(e.target.value)}
-                      className="w-full min-h-[140px] rounded-2xl border border-white/10 bg-white/5 p-6 pb-12 text-white placeholder:text-white/30 focus:outline-none focus:border-violet-500/50 transition-all resize-none" 
+                      className="w-full min-h-[140px] rounded-2xl border border-white/10 bg-white/5 p-6 pb-12 text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50 transition-all resize-none" 
                       placeholder="What would you like to learn today?" 
                     />
-                    <div className="absolute right-4 bottom-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/20 group-hover:text-violet-400/40 transition-colors">
+                    <div className="absolute right-4 bottom-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/20 group-hover:text-amber-400/40 transition-colors">
                         <Sparkles className="w-3 h-3" /> GPT-4o Powered
                     </div>
                 </div>
-                <Button type="submit" disabled={asking} variant="premium" className="px-10 h-14 text-base shadow-xl shadow-violet-500/20">
+                <Button type="submit" disabled={asking} variant="premium" className="px-10 h-14 text-base shadow-xl shadow-amber-500/20">
                     {asking ? <Loader2 className="w-5 h-5 animate-spin" /> : <MessagesSquare className="w-5 h-5" />}
                     {asking ? "Generating Answer..." : "Get Instant Answer"}
                 </Button>
@@ -150,11 +150,11 @@ export default function QAPage() {
                 </Card>
             ) : (
                 qas.map((qa, index) => (
-                    <Card key={qa._id} className="p-0 border-white/5 overflow-hidden group hover:border-violet-500/20 transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/5">
+                    <Card key={qa._id} className="p-0 border-white/5 overflow-hidden group hover:border-amber-500/20 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/5">
                         <div className="p-8 md:p-10">
                             {qa.isVerified && (
                                 <div className="absolute -top-3 -right-3 z-10">
-                                    <span className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg shadow-emerald-500/30 ring-4 ring-[#0b1021]">
+                                    <span className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg shadow-emerald-500/30 ring-4 ring-background">
                                         <CheckCircle className="w-3.5 h-3.5" /> Verified
                                     </span>
                                 </div>
@@ -162,7 +162,7 @@ export default function QAPage() {
                             
                             <div className="flex items-center justify-between mb-8">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-violet-500/20 to-indigo-500/20 border border-white/10 flex items-center justify-center overflow-hidden">
+                                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500/20 to-orange-500/20 border border-white/10 flex items-center justify-center overflow-hidden">
                                         {qa.student?.avatar ? (
                                             <img src={qa.student.avatar} className="w-full h-full object-cover" alt="" />
                                         ) : (
@@ -177,7 +177,7 @@ export default function QAPage() {
                                 <div className="flex gap-2">
                                     <span className={cn(
                                         "px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest border",
-                                        qa.language === 'am' ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20' : 'bg-violet-500/10 text-violet-400 border-violet-500/20'
+                                        qa.language === 'am' ? 'bg-teal-500/10 text-teal-400 border-teal-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
                                     )}>
                                         {qa.language === 'am' ? 'አማርኛ' : 'English'}
                                     </span>
@@ -187,10 +187,10 @@ export default function QAPage() {
                                 </div>
                             </div>
                             
-                            <h3 className="text-2xl font-bold text-white mb-8 group-hover:text-violet-400 transition-colors leading-tight">{qa.question}</h3>
+                            <h3 className="text-2xl font-bold text-white mb-8 group-hover:text-amber-400 transition-colors leading-tight">{qa.question}</h3>
                             
                             <div className="bg-white/5 rounded-3xl p-8 border border-white/5 relative shadow-inner overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/5 rounded-full blur-[40px] -z-10" />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-600/5 rounded-full blur-[40px] -z-10" />
                                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
                                     {qa.isVerified ? (
                                         <div className="flex items-center gap-2.5 text-emerald-400">
@@ -198,9 +198,9 @@ export default function QAPage() {
                                             <span className="text-[10px] font-bold uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full">Educational Verified Answer</span>
                                         </div>
                                     ) : (
-                                        <div className="flex items-center gap-2.5 text-violet-400">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
-                                            <span className="text-[10px] font-bold uppercase tracking-widest bg-violet-500/10 px-3 py-1 rounded-full">AI Explanatory Response</span>
+                                        <div className="flex items-center gap-2.5 text-amber-400">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                                            <span className="text-[10px] font-bold uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full">AI Explanatory Response</span>
                                         </div>
                                     )}
                                 </div>
@@ -212,7 +212,7 @@ export default function QAPage() {
                             <div className="mt-8 flex items-center justify-between">
                                 <button 
                                     onClick={() => handleUpvote(qa._id, index)}
-                                    className="flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/5 border border-white/5 text-white/50 hover:bg-violet-500/10 hover:text-violet-400 hover:border-violet-500/30 transition-all group/upvote"
+                                    className="flex items-center gap-3 px-5 py-2.5 rounded-xl bg-white/5 border border-white/5 text-white/50 hover:bg-amber-500/10 hover:text-amber-400 hover:border-amber-500/30 transition-all group/upvote"
                                 >
                                     <ThumbsUp className="w-4 h-4 group-hover/upvote:scale-125 transition-transform" />
                                     <span className="text-sm font-bold">Thoughtful Explanation ({qa.upvotes})</span>
