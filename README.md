@@ -52,7 +52,7 @@ brain-bridge/
 cd backend
 cp .env.example .env   # Fill in your values
 npm install
-npm run dev            # Runs on http://localhost:5000
+npm run dev            # Runs on http://localhost:5001
 ```
 
 ### Frontend
