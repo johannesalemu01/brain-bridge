@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
 
 const api = axios.create({
   baseURL: API_BASE,
-  headers: { "Content-Type": "application/json" },
+  headers: { 'Content-Type': 'application/json' },
 });
 
 // Attach JWT token to every request
 api.interceptors.request.use((config) => {
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("bb_token");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('bb_token');
     if (token) config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
@@ -20,28 +20,34 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401 && typeof window !== "undefined") {
-      localStorage.removeItem("bb_token");
-      localStorage.removeItem("bb_user");
-      window.location.href = "/login";
+    if (err.response?.status === 401 && typeof window !== 'undefined') {
+      localStorage.removeItem('bb_token');
+      localStorage.removeItem('bb_user');
+      window.location.href = '/login';
     }
     return Promise.reject(err);
-  }
+  },
 );
 
 // ── Auth ──────────────────────────────────────
 export const authApi = {
-  register: (data: { name: string; email: string; password: string; role: string; language: string }) =>
-    api.post("/auth/register", data),
-  login: (data: { email: string; password: string }) => api.post("/auth/login", data),
-  getMe: () => api.get("/auth/me"),
-  updateMe: (data: object) => api.patch("/auth/me", data),
+  register: (data: {
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+    language: string;
+  }) => api.post('/auth/register', data),
+  login: (data: { email: string; password: string }) =>
+    api.post('/auth/login', data),
+  getMe: () => api.get('/auth/me'),
+  updateMe: (data: object) => api.patch('/auth/me', data),
 };
 
 // ── Study Planner ─────────────────────────────
 export const plannerApi = {
-  generate: (data: object) => api.post("/planner/generate", data),
-  getAll: () => api.get("/planner"),
+  generate: (data: object) => api.post('/planner/generate', data),
+  getAll: () => api.get('/planner'),
   getOne: (id: string) => api.get(`/planner/${id}`),
   updateTask: (planId: string, taskId: string, data: object) =>
     api.patch(`/planner/${planId}/task/${taskId}`, data),
@@ -50,18 +56,21 @@ export const plannerApi = {
 
 // ── Q&A ───────────────────────────────────────
 export const qaApi = {
-  ask: (data: { question: string; subject?: string; language?: string }) => api.post("/qa/ask", data),
-  getAll: (params?: object) => api.get("/qa", { params }),
-  getMy: () => api.get("/qa/my"),
-  getPending: () => api.get("/qa/pending"),
-  verify: (id: string, data: { teacherAnswer: string }) => api.patch(`/qa/${id}/verify`, data),
+  ask: (data: { question: string; subject?: string; language?: string }) =>
+    api.post('/qa/ask', data),
+  getAll: (params?: object) => api.get('/qa', { params }),
+  getMy: () => api.get('/qa/my'),
+  getPending: () => api.get('/qa/pending'),
+  verify: (id: string, data: { teacherAnswer: string }) =>
+    api.patch(`/qa/${id}/verify`, data),
   upvote: (id: string) => api.patch(`/qa/${id}/upvote`),
 };
 
 // ── Voice ─────────────────────────────────────
 export const voiceApi = {
-  ask: (data: { transcript: string; language?: string; subject?: string }) => api.post("/voice/ask", data),
-  getHistory: () => api.get("/voice/history"),
+  ask: (data: { transcript: string; language?: string; subject?: string }) =>
+    api.post('/voice/ask', data),
+  getHistory: () => api.get('/voice/history'),
   saveToQA: (id: string) => api.post(`/voice/${id}/save-to-qa`),
 };
 
