@@ -17,19 +17,40 @@ const app = express();
 // ── DB ──
 connectDB();
 
-// ── Security ──
-app.use(helmet());
+const parseOrigins = () => {
+  const raw = process.env.CLIENT_URL;
+  if (!raw) {
+    return ['http://localhost:3000', 'http://127.0.0.1:3000'];
+  }
+  return raw.split(',').map((s) => s.trim()).filter(Boolean);
+};
+
+const corsOptions = {
+  origin: parseOrigins(),
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 204,
+};
+
+// ── CORS first (OPTIONS preflight is handled by this middleware) ──
+app.use(cors(corsOptions));
+
+// ── Security (allow cross-origin fetch from the Next.js dev server) ──
 app.use(
-  cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true,
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
   })
 );
+
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 200,
     message: 'Too many requests, please try again later.',
+    standardHeaders: true,
+    legacyHeaders: false,
+    skip: (req) => req.method === 'OPTIONS',
   })
 );
 
@@ -65,7 +86,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error.' });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`🚀 BrainBridge API running on http://localhost:${PORT}`);
   console.log(`📚 Environment: ${process.env.NODE_ENV || 'development'}`);
