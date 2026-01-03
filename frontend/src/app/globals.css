@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -33,55 +32,56 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  --font-playful: "Fredoka", cursive, sans-serif;
 }
+
+/* Tailwind v4 uses @import 'tailwindcss' above */
 
 @layer base {
   :root {
-    --background: 28 32% 8%;
-    --foreground: 40 40% 96%;
-    --card: 26 28% 11%;
-    --card-foreground: 40 40% 96%;
-    --popover: 26 28% 11%;
-    --popover-foreground: 40 40% 96%;
-    --primary: 32 95% 54%;
-    --primary-foreground: 28 40% 8%;
-    --secondary: 26 18% 16%;
-    --secondary-foreground: 40 35% 92%;
-    --muted: 26 16% 18%;
-    --muted-foreground: 35 15% 62%;
-    --accent: 168 55% 38%;
-    --accent-foreground: 40 40% 98%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 28 14% 20%;
-    --input: 28 14% 20%;
-    --ring: 32 95% 54%;
-    --radius: 0.75rem;
+    --background: 40 33% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 48 100% 50%; /* Sunny Yellow */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 199 89% 48%; /* Sky Blue */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 142 71% 45%; /* Grass Green */
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 48 100% 50%;
+    --radius: 2rem;
   }
 }
+
+
 
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    --font-sans: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground;
+    font-family: var(--font-fredoka), "Fredoka", cursive, sans-serif;
     background-image:
       radial-gradient(
-        ellipse 90% 60% at 10% -10%,
-        rgba(245, 158, 11, 0.12),
+        ellipse 90% 60% at 50% -10%,
+        rgba(255, 235, 59, 0.2),
         transparent
       ),
       radial-gradient(
-        ellipse 70% 50% at 90% 100%,
-        rgba(20, 184, 166, 0.1),
+        ellipse 70% 50% at 100% 50%,
+        rgba(3, 169, 244, 0.1),
         transparent
-      ),
-      radial-gradient(
-        circle at 50% 50%,
-        rgba(28, 25, 22, 0.4),
-        hsl(28 32% 8%)
       );
     min-height: 100vh;
   }

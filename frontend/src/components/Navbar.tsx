@@ -50,9 +50,9 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-5 pb-2 pointer-events-none">
         <nav
           className={cn(
-            'pointer-events-auto flex w-full max-w-5xl items-center gap-2 rounded-[999px] border px-2 py-2 pl-5 pr-2 shadow-xl transition-all duration-500',
-            'border-amber-200/70 bg-[#fffdf8]/92 text-slate-800 backdrop-blur-xl',
-            scrolled && 'shadow-2xl shadow-amber-900/15 ring-1 ring-amber-100/90',
+            'pointer-events-auto flex w-full max-w-5xl items-center gap-2 rounded-full border-4 px-2 py-2 pl-5 pr-2 shadow-2xl transition-all duration-500',
+            'border-yellow-200 bg-white/95 text-slate-800 backdrop-blur-xl',
+            scrolled && 'shadow-yellow-400/20 translate-y-2 scale-95',
           )}
         >
           <Link
@@ -60,15 +60,15 @@ export default function Navbar() {
             className="flex shrink-0 items-center gap-2.5 pr-2"
             onClick={() => setOpen(false)}
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 via-orange-500 to-teal-600 shadow-md shadow-orange-400/35">
-              <BrainCircuit className="h-5 w-5 text-white" strokeWidth={2.2} />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-400 via-yellow-400 to-green-400 shadow-lg animate-bounce">
+              <BrainCircuit className="h-6 w-6 text-white" strokeWidth={2.5} />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-lg font-extrabold tracking-tight text-slate-900">
+              <span className="text-xl font-black tracking-tight text-slate-900 font-playful">
                 BrainBridge
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-700/90">
-                Learn in comfort
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">
+                Play & Learn!
               </span>
             </div>
           </Link>
@@ -116,9 +116,9 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/register"
-                  className="inline-flex items-center rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-2.5 text-sm font-bold text-amber-950 shadow-md shadow-orange-400/40 transition hover:from-amber-400 hover:to-orange-400 active:scale-[0.98]"
+                  className="inline-flex items-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-yellow-950 shadow-[0_4px_0_0_#d97706] transition-all hover:bg-yellow-300 active:translate-y-1 active:shadow-none"
                 >
-                  Start free
+                  Join the Fun!
                 </Link>
               </>
             )}

@@ -19,8 +19,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-const heroImage =
-  "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1400&q=85";
+const heroImage = "/images/children_studing.jpg";
 
 export default function LandingPage() {
   return (
@@ -42,11 +41,11 @@ export default function LandingPage() {
                 </span>
               </div>
 
-              <h1 className="mb-6 text-4xl font-black leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
-                Big ideas start
+              <h1 className="mb-6 text-5xl font-black leading-[1.05] tracking-tight text-slate-900 sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] animate-rubber-band">
+                Think big, 
                 <br />
-                <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-teal-600 bg-clip-text text-transparent">
-                  where you are comfortable.
+                <span className="bg-gradient-to-r from-blue-500 via-yellow-400 to-green-500 bg-clip-text text-transparent drop-shadow-sm">
+                  play bigger!
                 </span>
               </h1>
 
@@ -62,11 +61,11 @@ export default function LandingPage() {
                   asChild
                   variant="premium"
                   size="xl"
-                  className="h-14 rounded-2xl px-8 text-base shadow-lg shadow-orange-400/35"
+                  className="h-16 rounded-[2rem] bg-yellow-400 hover:bg-yellow-300 text-yellow-950 px-10 text-lg font-black shadow-[0_8px_0_0_#d97706] active:translate-y-1 active:shadow-none transition-all"
                 >
                   <Link href="/register" className="gap-2">
-                    Start learning free
-                    <ArrowRight className="h-5 w-5" />
+                    Build your brain!
+                    <ArrowRight className="h-6 w-6" />
                   </Link>
                 </Button>
                 <Button
@@ -159,7 +158,7 @@ export default function LandingPage() {
           <div className="grid gap-8 md:grid-cols-3">
             <article
               id="planner"
-              className="scroll-mt-28 rounded-3xl border border-amber-100/90 bg-gradient-to-b from-white to-amber-50/30 p-2 shadow-lg shadow-amber-900/5"
+              className="scroll-mt-28 rounded-[3rem] border-4 border-yellow-200 bg-white p-2 shadow-[0_12px_0_0_#fde047] hover:translate-y-1 hover:shadow-[0_4px_0_0_#fde047] transition-all"
             >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardHeader className="pb-4 pt-8">
@@ -179,7 +178,7 @@ export default function LandingPage() {
 
             <article
               id="voice"
-              className="scroll-mt-28 rounded-3xl border border-teal-100/90 bg-gradient-to-b from-white to-teal-50/35 p-2 shadow-lg shadow-teal-900/5"
+              className="scroll-mt-28 rounded-[3rem] border-4 border-blue-200 bg-white p-2 shadow-[0_12px_0_0_#93c5fd] hover:translate-y-1 hover:shadow-[0_4px_0_0_#93c5fd] transition-all"
             >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardHeader className="pb-4 pt-8">
@@ -205,7 +204,7 @@ export default function LandingPage() {
 
             <article
               id="qa"
-              className="scroll-mt-28 rounded-3xl border border-emerald-100/90 bg-gradient-to-b from-white to-emerald-50/30 p-2 shadow-lg shadow-emerald-900/5"
+              className="scroll-mt-28 rounded-[3rem] border-4 border-green-200 bg-white p-2 shadow-[0_12px_0_0_#86efac] hover:translate-y-1 hover:shadow-[0_4px_0_0_#86efac] transition-all"
             >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardHeader className="pb-4 pt-8">
@@ -229,22 +228,19 @@ export default function LandingPage() {
       {/* ── CTA band ── */}
       <section className="py-20 sm:py-28">
         <div className="container mx-auto max-w-4xl px-5 lg:px-8">
-          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 px-8 py-14 text-center shadow-2xl shadow-teal-900/30 sm:px-12">
-            <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-amber-400/25 blur-3xl" />
-            <div className="pointer-events-none absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-teal-400/20 blur-3xl" />
-            <h2 className="relative text-3xl font-black text-white sm:text-4xl">
-              Ready when you are — sprawled on the rug or at your desk.
+          <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-blue-600 via-yellow-500 to-green-600 px-8 py-14 text-center shadow-2xl sm:px-12">
+            <h2 className="relative text-4xl font-black text-white sm:text-5xl">
+              Ready to start your adventure?
             </h2>
-            <p className="relative mx-auto mt-4 max-w-lg text-lg text-amber-100/90">
-              Join students using BrainBridge to plan smarter, ask boldly, and learn in
-              their own rhythm.
+            <p className="relative mx-auto mt-4 max-w-lg text-lg font-bold text-white/90">
+              Join thousands of brainy kids building their future with BrainBridge!
             </p>
             <Button
               asChild
               size="xl"
-              className="relative mt-10 h-14 rounded-2xl border-0 bg-gradient-to-r from-amber-400 to-orange-400 px-10 text-base font-bold text-amber-950 shadow-lg hover:from-amber-300 hover:to-orange-300"
+              className="relative mt-10 h-16 rounded-full border-0 bg-white px-10 text-lg font-black text-blue-600 shadow-xl hover:scale-105 transition-transform"
             >
-              <Link href="/register">Create your free account</Link>
+              <Link href="/register">Let&apos;s Go! 🚀</Link>
             </Button>
           </div>
         </div>

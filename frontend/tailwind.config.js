@@ -45,6 +45,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
+        playful: ["var(--font-fredoka)", "cursive", "sans-serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       animation: {
@@ -53,6 +54,8 @@ module.exports = {
         float: "float 3s ease-in-out infinite",
         "pulse-glow": "pulseGlow 2s ease-in-out infinite",
         gradient: "gradient 8s ease infinite",
+        bounce: "bounce 2s infinite",
+        "rubber-band": "rubberBand 1s",
       },
       keyframes: {
         fadeIn: {
@@ -74,6 +77,15 @@ module.exports = {
         gradient: {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
+        },
+        rubberBand: {
+          "from": { transform: "scale3d(1, 1, 1)" },
+          "30%": { transform: "scale3d(1.25, 0.75, 1)" },
+          "40%": { transform: "scale3d(0.75, 1.25, 1)" },
+          "50%": { transform: "scale3d(1.15, 0.85, 1)" },
+          "65%": { transform: "scale3d(0.95, 1.05, 1)" },
+          "75%": { transform: "scale3d(1.05, 0.95, 1)" },
+          "to": { transform: "scale3d(1, 1, 1)" },
         },
       },
     },

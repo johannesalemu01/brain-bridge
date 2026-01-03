@@ -4,12 +4,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-black tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 active:translate-y-0.5',
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+          'bg-primary text-yellow-950 shadow-[0_4px_0_0_#d97706] hover:bg-primary/90 hover:shadow-[0_2px_0_0_#d97706] hover:-translate-y-0.5',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         premium:
-          'bg-gradient-to-r from-amber-500 to-orange-600 text-amber-950 font-semibold shadow-lg shadow-amber-600/25 hover:from-amber-400 hover:to-orange-500 transition-all active:scale-95',
+          'bg-gradient-to-r from-blue-500 to-teal-500 text-white font-black shadow-[0_4px_0_0_#0369a1] hover:from-blue-400 hover:to-teal-400',
       },
       size: {
         default: 'h-9 px-4 py-2',
