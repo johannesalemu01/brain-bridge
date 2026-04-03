@@ -127,4 +127,33 @@ const getPending = async (req, res) => {
   }
 };
 
-module.exports = { ask, getAll, getMy, verify, upvote, getPending };
+// GET /api/qa/teacher/overview
+const getTeacherOverview = async (req, res) => {
+  try {
+    const [pendingCount, totalVerified, latestVerified] = await Promise.all([
+      QA.countDocuments({ isVerified: false }),
+      QA.countDocuments({ isVerified: true }),
+      QA.findOne({ isVerified: true, teacher: req.user._id })
+        .sort("-teacherVerifiedAt")
+        .select("teacherVerifiedAt"),
+    ]);
+
+    return success(res, {
+      pendingCount,
+      totalVerified,
+      recentVerifiedAt: latestVerified?.teacherVerifiedAt || null,
+    });
+  } catch (err) {
+    return error(res, "Failed to fetch teacher overview.", 500);
+  }
+};
+
+module.exports = {
+  ask,
+  getAll,
+  getMy,
+  verify,
+  upvote,
+  getPending,
+  getTeacherOverview,
+};

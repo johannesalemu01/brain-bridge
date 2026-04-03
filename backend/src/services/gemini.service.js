@@ -187,4 +187,85 @@ Student asked: "${transcript}"`;
     : "Great question! This is a key concept in your studies. The main idea is to break it down step by step and apply the core principles. I recommend reviewing your notes and practicing with similar examples to strengthen your understanding.";
 };
 
-module.exports = { generateStudyPlan, answerQuestion, voiceAnswer };
+// ──────────────────────────────────────────────
+// Adjust (re-plan) remaining study tasks
+// ──────────────────────────────────────────────
+const adjustStudyPlan = async ({ subjects, examDate, hoursPerDay, language, completedTasks, skippedTasks, pendingTasks }) => {
+  const daysLeft = Math.ceil((new Date(examDate) - new Date()) / (1000 * 60 * 60 * 24));
+  const lang = language === 'am' ? 'Amharic' : 'English';
+
+  const prompt = `You are an expert academic study planner. A student's study plan needs adjustment because they fell behind.
+
+Current Status:
+- Completed tasks: ${completedTasks.length}
+- Skipped tasks: ${skippedTasks.length}
+- Pending tasks: ${pendingTasks.length}
+- Days until exam: ${daysLeft}
+- Study hours per day: ${hoursPerDay}
+
+Subjects (with weak level 1-5):
+${subjects.map((s) => `- ${s.name}: weakness level ${s.weakLevel}/5`).join('\n')}
+
+Skipped topics that need rescheduling:
+${skippedTasks.map((t) => `- ${t.subject}: ${t.topic}`).join('\n') || 'None'}
+
+Pending topics still to cover:
+${pendingTasks.map((t) => `- ${t.subject}: ${t.topic}`).join('\n') || 'None'}
+
+Response language: ${lang}
+
+Create an ADJUSTED study plan that:
+1. Prioritizes skipped high-priority topics
+2. Redistributes remaining work across ${daysLeft} days
+3. Gives more time to weak subjects
+4. Is realistic for ${hoursPerDay} hours/day
+
+Return ONLY valid JSON:
+{
+  "summary": "string (2-3 sentences about the adjustment)",
+  "tasks": [
+    {
+      "subject": "string",
+      "topic": "string",
+      "date": "YYYY-MM-DD",
+      "duration": number (minutes),
+      "priority": "low|medium|high",
+      "notes": "string"
+    }
+  ]
+}
+Generate up to ${Math.min(daysLeft * 3, 30)} tasks.`;
+
+  if (hasApiKey) {
+    const res = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' },
+      temperature: 0.7,
+    });
+    return JSON.parse(res.choices[0].message.content);
+  }
+
+  // ── MOCK (no API key) ──
+  const today = new Date();
+  const allRemainingTopics = [...skippedTasks, ...pendingTasks];
+  const mockTasks = allRemainingTopics.slice(0, Math.min(daysLeft * 3, 20)).map((t, i) => {
+    const date = new Date(today);
+    date.setDate(date.getDate() + Math.floor(i / 3));
+    return {
+      subject: t.subject,
+      topic: `[Adjusted] ${t.topic}`,
+      date: date.toISOString().split('T')[0],
+      duration: Math.round(hoursPerDay * 60 / Math.max(subjects.length, 1)),
+      priority: t.priority || 'high',
+      notes: 'Rescheduled from adjusted plan – focus on core concepts.',
+    };
+  });
+
+  return {
+    summary: `Your plan has been adjusted! ${skippedTasks.length} skipped topic(s) have been rescheduled across the remaining ${daysLeft} days. Focus on high-priority weak subjects first.`,
+    tasks: mockTasks,
+  };
+};
+
+module.exports = { generateStudyPlan, answerQuestion, voiceAnswer, adjustStudyPlan };
