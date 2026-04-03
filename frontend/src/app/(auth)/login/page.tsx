@@ -7,6 +7,9 @@ import { BrainCircuit, Mail, Lock, Loader2, LogIn } from "lucide-react";
 import toast from "react-hot-toast";
 import { authApi } from "@/lib/api";
 import { saveAuth } from "@/lib/auth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -33,62 +36,70 @@ export default function LoginPage() {
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[100px] -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-[100px] -z-10" />
 
-      <div className="w-full max-w-md glass p-8 shadow-2xl relative z-10">
-        <div className="flex flex-col items-center mb-8">
-          <Link href="/" className="flex items-center gap-2 mb-6">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500">
+      <Card className="w-full max-w-md p-2 shadow-2xl relative z-10 border-white/5">
+        <CardHeader className="flex flex-col items-center pb-8">
+          <Link href="/" className="flex items-center gap-2 mb-6 transition-transform hover:scale-105">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 shadow-lg shadow-violet-500/20">
               <BrainCircuit className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold text-white tracking-tight">BrainBridge<span className="text-cyan-400">AI</span></span>
           </Link>
-          <h2 className="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-          <p className="text-white/60 text-sm">Enter your credentials to continue</p>
-        </div>
+          <CardTitle className="text-2xl font-bold text-white mb-2">Welcome Back</CardTitle>
+          <CardDescription className="text-white/50 text-sm">Enter your credentials to continue</CardDescription>
+        </CardHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block text-sm font-medium text-white/80 mb-2">Email Address</label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-              <input
-                type="email"
-                required
-                className="input-field pl-10"
-                placeholder="you@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-white/70 ml-1">Email Address</label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                <Input
+                  type="email"
+                  required
+                  className="pl-12 bg-white/5 border-white/10"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+              </div>
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-white/80 mb-2">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-              <input
-                type="password"
-                required
-                className="input-field pl-10"
-                placeholder="••••••••"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              />
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-white/70 ml-1">Password</label>
+              <div className="relative">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+                <Input
+                  type="password"
+                  required
+                  className="pl-12 bg-white/5 border-white/10"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                />
+              </div>
             </div>
-          </div>
 
-          <button type="submit" disabled={loading} className="btn-primary w-full mt-6">
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <LogIn className="w-5 h-5" />}
-            {loading ? "Signing in..." : "Sign In"}
-          </button>
-        </form>
+            <Button 
+              type="submit" 
+              disabled={loading} 
+              variant="premium" 
+              size="xl" 
+              className="w-full mt-4"
+            >
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <LogIn className="w-5 h-5" />}
+              {loading ? "Signing in..." : "Sign In to BrainBridge"}
+            </Button>
+          </form>
 
-        <p className="text-center text-white/60 text-sm mt-8">
-          Don't have an account?{" "}
-          <Link href="/register" className="text-violet-400 hover:text-violet-300 font-semibold">
-            Create account
-          </Link>
-        </p>
-      </div>
+          <p className="text-center text-white/50 text-sm mt-8">
+            Don't have an account?{" "}
+            <Link href="/register" className="text-violet-400 hover:text-violet-300 font-semibold transition-colors">
+              Create account
+            </Link>
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 }
