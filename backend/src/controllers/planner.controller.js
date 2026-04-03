@@ -1,19 +1,24 @@
-const StudyPlan = require('../models/StudyPlan');
-const { generateStudyPlan } = require('../services/openai.service');
-const { success, error } = require('../utils/response');
+const StudyPlan = require("../models/StudyPlan");
+const { generateStudyPlan } = require("../services/gemini.service");
+const { success, error } = require("../utils/response");
 
 // POST /api/planner/generate
 const generate = async (req, res) => {
   try {
     const { subjects, examDate, title } = req.body;
     if (!subjects?.length || !examDate) {
-      return error(res, 'Subjects and exam date are required.', 400);
+      return error(res, "Subjects and exam date are required.", 400);
     }
 
     const hoursPerDay = req.user.studyHoursPerDay || 2;
-    const language = req.user.language || 'en';
+    const language = req.user.language || "en";
 
-    const aiResult = await generateStudyPlan({ subjects, examDate, hoursPerDay, language });
+    const aiResult = await generateStudyPlan({
+      subjects,
+      examDate,
+      hoursPerDay,
+      language,
+    });
 
     const plan = await StudyPlan.create({
       user: req.user._id,
@@ -25,31 +30,36 @@ const generate = async (req, res) => {
       tasks: aiResult.tasks,
     });
 
-    return success(res, { plan }, 'Study plan generated', 201);
+    return success(res, { plan }, "Study plan generated", 201);
   } catch (err) {
     console.error(err);
-    return error(res, 'Failed to generate study plan.', 500);
+    return error(res, "Failed to generate study plan.", 500);
   }
 };
 
 // GET /api/planner
 const getPlans = async (req, res) => {
   try {
-    const plans = await StudyPlan.find({ user: req.user._id }).sort('-createdAt');
+    const plans = await StudyPlan.find({ user: req.user._id }).sort(
+      "-createdAt",
+    );
     return success(res, { plans });
   } catch (err) {
-    return error(res, 'Failed to fetch plans.', 500);
+    return error(res, "Failed to fetch plans.", 500);
   }
 };
 
 // GET /api/planner/:id
 const getPlan = async (req, res) => {
   try {
-    const plan = await StudyPlan.findOne({ _id: req.params.id, user: req.user._id });
-    if (!plan) return error(res, 'Plan not found.', 404);
+    const plan = await StudyPlan.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!plan) return error(res, "Plan not found.", 404);
     return success(res, { plan });
   } catch (err) {
-    return error(res, 'Failed to fetch plan.', 500);
+    return error(res, "Failed to fetch plan.", 500);
   }
 };
 
@@ -57,30 +67,36 @@ const getPlan = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     const { status, notes } = req.body;
-    const plan = await StudyPlan.findOne({ _id: req.params.id, user: req.user._id });
-    if (!plan) return error(res, 'Plan not found.', 404);
+    const plan = await StudyPlan.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!plan) return error(res, "Plan not found.", 404);
 
     const task = plan.tasks.id(req.params.taskId);
-    if (!task) return error(res, 'Task not found.', 404);
+    if (!task) return error(res, "Task not found.", 404);
 
     if (status) task.status = status;
     if (notes !== undefined) task.notes = notes;
 
     await plan.save();
-    return success(res, { plan }, 'Task updated');
+    return success(res, { plan }, "Task updated");
   } catch (err) {
     console.error(err);
-    return error(res, 'Failed to update task.', 500);
+    return error(res, "Failed to update task.", 500);
   }
 };
 
 // DELETE /api/planner/:id
 const deletePlan = async (req, res) => {
   try {
-    await StudyPlan.findOneAndDelete({ _id: req.params.id, user: req.user._id });
-    return success(res, null, 'Plan deleted');
+    await StudyPlan.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    return success(res, null, "Plan deleted");
   } catch (err) {
-    return error(res, 'Failed to delete plan.', 500);
+    return error(res, "Failed to delete plan.", 500);
   }
 };
 

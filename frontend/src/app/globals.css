@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
 
 @theme {
   --color-border: hsl(var(--border));
@@ -61,16 +61,64 @@
     --ring: 48 100% 50%;
     --radius: 2rem;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 220 22% 10%;
+      --foreground: 210 40% 96%;
+      --card: 222 24% 12%;
+      --card-foreground: 210 40% 96%;
+      --popover: 222 24% 12%;
+      --popover-foreground: 210 40% 96%;
+      --primary: 45 100% 58%;
+      --primary-foreground: 222.2 47.4% 11.2%;
+      --secondary: 195 100% 44%;
+      --secondary-foreground: 210 40% 98%;
+      --muted: 223 18% 18%;
+      --muted-foreground: 215 20% 70%;
+      --accent: 160 84% 39%;
+      --accent-foreground: 210 40% 98%;
+      --destructive: 0 70% 48%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 220 15% 22%;
+      --input: 220 15% 22%;
+      --ring: 45 100% 58%;
+    }
+  }
+
+  .dark {
+    --background: 220 22% 10%;
+    --foreground: 210 40% 96%;
+    --card: 222 24% 12%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 24% 12%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 45 100% 58%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 195 100% 44%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 18% 18%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 70% 48%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 45 100% 58%;
+  }
 }
 
 @layer utilities {
   .lego-dot {
-    background-image: radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 3px);
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 3px
+    );
     background-size: 16px 16px;
   }
 }
-
-
 
 @layer base {
   * {

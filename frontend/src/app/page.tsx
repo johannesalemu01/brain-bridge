@@ -23,37 +23,40 @@ const heroImage = "/images/children_studing.jpg";
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#faf6f0] text-slate-800">
+    <main className="min-h-screen overflow-x-hidden bg-[#faf6f0] text-slate-800 dark:bg-slate-950 dark:text-slate-100">
       <Navbar />
 
       {/* Soft page backdrop */}
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(251,191,36,0.28),transparent),radial-gradient(ellipse_70%_50%_at_100%_50%,rgba(20,184,166,0.12),transparent),linear-gradient(180deg,#faf6f0_0%,#fffdfb_50%,#f7f0e8_100%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(251,191,36,0.28),transparent),radial-gradient(ellipse_70%_50%_at_100%_50%,rgba(20,184,166,0.12),transparent),linear-gradient(180deg,#faf6f0_0%,#fffdfb_50%,#f7f0e8_100%)] dark:bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(245,158,11,0.24),transparent),radial-gradient(ellipse_70%_50%_at_100%_50%,rgba(20,184,166,0.16),transparent),linear-gradient(180deg,#020617_0%,#0b1120_55%,#0f172a_100%)]" />
 
       {/* ── Hero ── */}
       <section className="relative pt-32 pb-16 sm:pt-36 lg:pt-40 lg:pb-24">
         <div className="container mx-auto max-w-6xl px-5 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-[1fr,1.05fr] lg:gap-16">
             <div className="order-2 text-center lg:order-1 lg:text-left">
-              <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-amber-200/80 bg-white/70 px-4 py-2 shadow-sm backdrop-blur-sm lg:justify-start">
+              <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-amber-200/80 bg-white/70 px-4 py-2 shadow-sm backdrop-blur-sm lg:justify-start dark:border-amber-400/30 dark:bg-slate-900/70">
                 <Sparkles className="h-4 w-4 text-amber-600" />
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-900/80">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-900/80 dark:text-amber-200/90">
                   Calm, curious, connected learning
                 </span>
               </div>
 
-              <h1 className="mb-6 text-5xl font-black leading-[1.05] tracking-tight text-slate-900 sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] animate-rubber-band">
-                Think big, 
+              <h1 className="mb-6 text-5xl font-black leading-[1.05] tracking-tight text-slate-900 sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] animate-rubber-band dark:text-slate-100">
+                Think big,
                 <br />
                 <span className="bg-gradient-to-r from-blue-500 via-yellow-400 to-green-500 bg-clip-text text-transparent drop-shadow-sm">
                   play bigger!
                 </span>
               </h1>
 
-              <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-600 lg:mx-0 mx-auto">
+              <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-600 lg:mx-0 mx-auto dark:text-slate-300">
                 BrainBridge blends AI study planning, voice tutoring in{" "}
-                <strong className="font-semibold text-teal-800">Amharic & English</strong>,
-                and teacher-verified answers — so students can learn deeply, even when
-                they&apos;re stretched out with a notebook and a dream.
+                <strong className="font-semibold text-teal-800 dark:text-teal-300">
+                  Amharic & English
+                </strong>
+                , and teacher-verified answers — so students can learn deeply,
+                even when they&apos;re stretched out with a notebook and a
+                dream.
               </p>
 
               <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
@@ -72,13 +75,13 @@ export default function LandingPage() {
                   asChild
                   variant="outline"
                   size="xl"
-                  className="h-14 rounded-2xl border-slate-200 bg-white/80 px-8 text-base font-semibold text-slate-800 shadow-sm hover:bg-amber-50/80"
+                  className="h-14 rounded-2xl border-slate-200 bg-white/80 px-8 text-base font-semibold text-slate-800 shadow-sm hover:bg-amber-50/80 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:hover:bg-slate-800"
                 >
                   <Link href="#features">Explore the platform</Link>
                 </Button>
               </div>
 
-              <ul className="mt-10 flex flex-col gap-3 text-left text-sm font-medium text-slate-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8 lg:justify-start">
+              <ul className="mt-10 flex flex-col gap-3 text-left text-sm font-medium text-slate-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8 lg:justify-start dark:text-slate-300">
                 {[
                   "Personalized AI study plans",
                   "Voice-first Q&A in your language",
@@ -95,7 +98,7 @@ export default function LandingPage() {
             <div className="order-1 lg:order-2">
               <div className="relative mx-auto max-w-xl lg:max-w-none">
                 <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-amber-200/60 via-orange-100/40 to-teal-200/50 blur-2xl lg:-inset-8" />
-                <div className="relative overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-[0_32px_64px_-12px_rgba(180,83,9,0.25)] ring-1 ring-amber-100">
+                <div className="relative overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-[0_32px_64px_-12px_rgba(180,83,9,0.25)] ring-1 ring-amber-100 dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-700">
                   <div className="relative aspect-[4/5] w-full sm:aspect-[5/6] lg:aspect-[3/4]">
                     <Image
                       src={heroImage}
@@ -111,21 +114,21 @@ export default function LandingPage() {
                         Learning unplugged
                       </p>
                       <p className="mt-1 max-w-sm text-lg font-bold leading-snug text-white drop-shadow-md">
-                        Study in whatever position helps your mind breathe — we meet you
-                        there.
+                        Study in whatever position helps your mind breathe — we
+                        meet you there.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute -bottom-4 -right-2 flex max-w-[200px] rotate-2 flex-col gap-1 rounded-2xl border border-white/90 bg-white/95 p-4 shadow-xl backdrop-blur sm:-right-4 lg:-bottom-6 lg:-right-8 lg:max-w-[220px]">
-                  <div className="flex items-center gap-2 text-amber-700">
+                <div className="absolute -bottom-4 -right-2 flex max-w-[200px] rotate-2 flex-col gap-1 rounded-2xl border border-white/90 bg-white/95 p-4 shadow-xl backdrop-blur sm:-right-4 lg:-bottom-6 lg:-right-8 lg:max-w-[220px] dark:border-slate-700 dark:bg-slate-900/90">
+                  <div className="flex items-center gap-2 text-amber-700 dark:text-amber-300">
                     <BrainCircuit className="h-4 w-4" />
                     <span className="text-xs font-extrabold uppercase tracking-wide">
                       AI study buddy
                     </span>
                   </div>
-                  <p className="text-xs font-medium leading-relaxed text-slate-600">
+                  <p className="text-xs font-medium leading-relaxed text-slate-600 dark:text-slate-300">
                     Plans that adapt when exams, moods, or schedules shift.
                   </p>
                 </div>
@@ -138,39 +141,39 @@ export default function LandingPage() {
       {/* ── Features ── */}
       <section
         id="features"
-        className="scroll-mt-28 border-y border-amber-100/80 bg-white/50 py-20 backdrop-blur-sm sm:py-28"
+        className="scroll-mt-28 border-y border-amber-100/80 bg-white/50 py-20 backdrop-blur-sm sm:py-28 dark:border-slate-800 dark:bg-slate-900/45"
       >
         <div className="container mx-auto max-w-6xl px-5 lg:px-8">
           <div className="mx-auto mb-16 max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            <h2 className="mb-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-slate-100">
               Everything you need to{" "}
               <span className="text-transparent bg-gradient-to-r from-teal-700 to-amber-600 bg-clip-text">
                 actually enjoy
               </span>{" "}
               studying
             </h2>
-            <p className="text-lg text-slate-600">
-              Clear tools, warm design, and serious intelligence — built for students,
-              teachers, and late-night cram sessions alike.
+            <p className="text-lg text-slate-600 dark:text-slate-300">
+              Clear tools, warm design, and serious intelligence — built for
+              students, teachers, and late-night cram sessions alike.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
             <article
               id="planner"
-              className="scroll-mt-28 rounded-[3rem] border-4 border-yellow-200 bg-white p-2 shadow-[0_12px_0_0_#fde047] hover:translate-y-1 hover:shadow-[0_4px_0_0_#fde047] transition-all"
+              className="scroll-mt-28 rounded-[3rem] border-4 border-yellow-200 bg-white p-2 shadow-[0_12px_0_0_#fde047] hover:translate-y-1 hover:shadow-[0_4px_0_0_#fde047] transition-all dark:border-yellow-400/35 dark:bg-slate-900 dark:shadow-[0_12px_0_0_rgba(245,158,11,0.4)] dark:hover:shadow-[0_4px_0_0_rgba(245,158,11,0.4)]"
             >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardHeader className="pb-4 pt-8">
                   <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-amber-800 ring-2 ring-amber-200/80">
                     <BrainCircuit className="h-7 w-7" />
                   </div>
-                  <CardTitle className="text-xl font-extrabold text-slate-900">
+                  <CardTitle className="text-xl font-extrabold text-slate-900 dark:text-slate-100">
                     AI study planner
                   </CardTitle>
-                  <CardDescription className="text-base leading-relaxed text-slate-600">
-                    Exam dates, weak topics, and daily energy — turned into a schedule you
-                    can follow without burning out.
+                  <CardDescription className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                    Exam dates, weak topics, and daily energy — turned into a
+                    schedule you can follow without burning out.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -178,23 +181,25 @@ export default function LandingPage() {
 
             <article
               id="voice"
-              className="scroll-mt-28 rounded-[3rem] border-4 border-blue-200 bg-white p-2 shadow-[0_12px_0_0_#93c5fd] hover:translate-y-1 hover:shadow-[0_4px_0_0_#93c5fd] transition-all"
+              className="scroll-mt-28 rounded-[3rem] border-4 border-blue-200 bg-white p-2 shadow-[0_12px_0_0_#93c5fd] hover:translate-y-1 hover:shadow-[0_4px_0_0_#93c5fd] transition-all dark:border-blue-400/35 dark:bg-slate-900 dark:shadow-[0_12px_0_0_rgba(59,130,246,0.4)] dark:hover:shadow-[0_4px_0_0_rgba(59,130,246,0.4)]"
             >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardHeader className="pb-4 pt-8">
                   <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100 text-teal-800 ring-2 ring-teal-200/80">
                     <Mic className="h-7 w-7" />
                   </div>
-                  <CardTitle className="text-xl font-extrabold text-slate-900">
+                  <CardTitle className="text-xl font-extrabold text-slate-900 dark:text-slate-100">
                     Voice tutoring
                   </CardTitle>
-                  <CardDescription className="text-base leading-relaxed text-slate-600">
+                  <CardDescription className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
                     Ask out loud in{" "}
-                    <span className="font-semibold text-teal-800">Amharic or English</span>.
-                    Get patient, spoken guidance when reading on the couch or pacing the
-                    room.
+                    <span className="font-semibold text-teal-800 dark:text-teal-300">
+                      Amharic or English
+                    </span>
+                    . Get patient, spoken guidance when reading on the couch or
+                    pacing the room.
                   </CardDescription>
-                  <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-teal-800">
+                  <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-teal-800 dark:text-teal-300">
                     <Languages className="h-4 w-4" />
                     Multilingual by design
                   </div>
@@ -204,19 +209,19 @@ export default function LandingPage() {
 
             <article
               id="qa"
-              className="scroll-mt-28 rounded-[3rem] border-4 border-green-200 bg-white p-2 shadow-[0_12px_0_0_#86efac] hover:translate-y-1 hover:shadow-[0_4px_0_0_#86efac] transition-all"
+              className="scroll-mt-28 rounded-[3rem] border-4 border-green-200 bg-white p-2 shadow-[0_12px_0_0_#86efac] hover:translate-y-1 hover:shadow-[0_4px_0_0_#86efac] transition-all dark:border-emerald-400/35 dark:bg-slate-900 dark:shadow-[0_12px_0_0_rgba(16,185,129,0.35)] dark:hover:shadow-[0_4px_0_0_rgba(16,185,129,0.35)]"
             >
               <Card className="border-0 bg-transparent shadow-none">
                 <CardHeader className="pb-4 pt-8">
                   <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-800 ring-2 ring-emerald-200/80">
                     <ShieldCheck className="h-7 w-7" />
                   </div>
-                  <CardTitle className="text-xl font-extrabold text-slate-900">
+                  <CardTitle className="text-xl font-extrabold text-slate-900 dark:text-slate-100">
                     Verified Q&amp;A
                   </CardTitle>
-                  <CardDescription className="text-base leading-relaxed text-slate-600">
-                    AI drafts, teachers refine — so answers stay accurate when it matters
-                    most.
+                  <CardDescription className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                    AI drafts, teachers refine — so answers stay accurate when
+                    it matters most.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -233,7 +238,8 @@ export default function LandingPage() {
               Ready to start your adventure?
             </h2>
             <p className="relative mx-auto mt-4 max-w-lg text-lg font-bold text-white/90">
-              Join thousands of brainy kids building their future with BrainBridge!
+              Join thousands of brainy kids building their future with
+              BrainBridge!
             </p>
             <Button
               asChild
@@ -247,32 +253,43 @@ export default function LandingPage() {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-amber-100/80 bg-[#f3ece4]/80 px-5 py-16 backdrop-blur-sm lg:px-8">
+      <footer className="border-t border-amber-100/80 bg-[#f3ece4]/80 px-5 py-16 backdrop-blur-sm lg:px-8 dark:border-slate-800 dark:bg-slate-950/80">
         <div className="container mx-auto flex max-w-6xl flex-col items-center gap-10">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-teal-600 shadow-md">
               <BrainCircuit className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-black tracking-tight text-slate-900">
+            <span className="text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">
               BrainBridge
-              <span className="text-teal-700">AI</span>
+              <span className="text-teal-700 dark:text-teal-300">AI</span>
             </span>
           </div>
-          <div className="flex flex-wrap justify-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-500">
-            <Link href="#" className="transition hover:text-slate-800">
+          <div className="flex flex-wrap justify-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            <Link
+              href="#"
+              className="transition hover:text-slate-800 dark:hover:text-slate-200"
+            >
               Privacy
             </Link>
-            <Link href="#" className="transition hover:text-slate-800">
+            <Link
+              href="#"
+              className="transition hover:text-slate-800 dark:hover:text-slate-200"
+            >
               Terms
             </Link>
-            <Link href="#" className="transition hover:text-slate-800">
+            <Link
+              href="#"
+              className="transition hover:text-slate-800 dark:hover:text-slate-200"
+            >
               Support
             </Link>
           </div>
-          <p className="flex items-center gap-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+          <p className="flex items-center gap-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
             © 2026 BrainBridge AI
-            <span className="inline-block h-1 w-1 rounded-full bg-slate-300" />
-            Built with <Heart className="inline h-3 w-3 fill-rose-500 text-rose-500" /> for learners
+            <span className="inline-block h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-600" />
+            Built with{" "}
+            <Heart className="inline h-3 w-3 fill-rose-500 text-rose-500" /> for
+            learners
           </p>
         </div>
       </footer>
