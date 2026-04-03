@@ -38,7 +38,7 @@ export default function Sidebar() {
           <div className="p-1.5 rounded-lg bg-gradient-to-br from-amber-500 to-teal-600">
             <BrainCircuit className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-white tracking-tight">BrainBridge</span>
+          <span className="text-xl font-bold text-white tracking-tight">BrainBridges</span>
         </Link>
       </div>
 
