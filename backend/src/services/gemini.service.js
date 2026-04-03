@@ -95,18 +95,23 @@ Generate up to ${Math.min(daysLeft * 3, 30)} tasks spread across the days.
 `;
 
   if (hasApiKey) {
-    const text = await callOpenRouter({
-      prompt,
-      temperature: 0.7,
-      maxTokens: 1400,
-      jsonMode: true,
-    });
+    try {
+      const text = await callOpenRouter({
+        prompt,
+        temperature: 0.7,
+        maxTokens: 1400,
+        jsonMode: true,
+      });
 
-    const parsed = safeJsonParse(text);
-    if (!parsed?.tasks || !Array.isArray(parsed.tasks)) {
-      throw new Error("OpenRouter returned invalid study-plan JSON.");
+      const parsed = safeJsonParse(text);
+      if (parsed?.tasks && Array.isArray(parsed.tasks)) {
+        return parsed;
+      }
+      console.warn("OpenRouter returned invalid JSON structure, falling back to mock.", text);
+    } catch (err) {
+      console.error("OpenRouter generation error:", err.message);
+      // Fall through to mock logic
     }
-    return parsed;
   }
 
   const today = new Date();
@@ -237,13 +242,21 @@ Return ONLY valid JSON:
 Generate up to ${Math.min(daysLeft * 3, 30)} tasks.`;
 
   if (hasApiKey) {
-    const res = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      messages: [{ role: 'user', content: prompt }],
-      response_format: { type: 'json_object' },
-      temperature: 0.7,
-    });
-    return JSON.parse(res.choices[0].message.content);
+    try {
+      const res = await callOpenRouter({
+        prompt,
+        temperature: 0.7,
+        maxTokens: 1400,
+        jsonMode: true,
+      });
+      const parsed = safeJsonParse(res);
+      if (parsed?.tasks && Array.isArray(parsed.tasks)) {
+        return parsed;
+      }
+      console.warn("OpenRouter returned invalid JSON structure on adjust, falling back to mock.", res);
+    } catch (err) {
+      console.error("OpenRouter adjust error:", err.message);
+    }
   }
 
   // ── MOCK (no API key) ──
