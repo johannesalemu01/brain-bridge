@@ -132,4 +132,65 @@ Student asked: "${transcript}"`;
     : 'Great question! This is a key concept in your studies. The main idea is to break it down step by step and apply the core principles. I recommend reviewing your notes and practicing with similar examples to strengthen your understanding.';
 };
 
-module.exports = { generateStudyPlan, answerQuestion, voiceAnswer };
+// ──────────────────────────────────────────────
+// Adjust an existing study plan
+// ──────────────────────────────────────────────
+const adjustStudyPlan = async ({ title, examDate, remainingTasks, hoursPerDay, language }) => {
+  const daysLeft = Math.ceil((new Date(examDate) - new Date()) / (1000 * 60 * 60 * 24));
+  const lang = language === 'am' ? 'Amharic' : 'English';
+
+  const prompt = `
+You are an expert academic study planner. A student is lagging behind on their study plan "${title}".
+They have ${daysLeft} days left until their exam on ${examDate.split('T')[0]}.
+They have ${hoursPerDay} hours available per day.
+
+Remaining tasks (including skipped ones):
+${remainingTasks.map((t) => `- ${t.subject}: ${t.topic} (Original duration: ${t.duration}m, Status: ${t.status})`).join('\n')}
+
+Create a NEW optimized day-by-day study schedule for the remaining time. 
+Redistribute the remaining workload across the available days.
+Return ONLY valid JSON in this exact format:
+{
+  "summary": "string (new motivational overview)",
+  "tasks": [
+    {
+      "subject": "string",
+      "topic": "string",
+      "date": "YYYY-MM-DD",
+      "duration": number (minutes),
+      "priority": "low|medium|high",
+      "notes": "string"
+    }
+  ]
+}
+`;
+
+  if (hasApiKey) {
+    const res = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' },
+      temperature: 0.7,
+    });
+    return JSON.parse(res.choices[0].message.content);
+  }
+
+  // ── MOCK (no API key) ──
+  const today = new Date();
+  const mockTasks = remainingTasks.map((t, i) => {
+    const date = new Date(today);
+    date.setDate(date.getDate() + Math.floor(i / 2));
+    return {
+      ...t,
+      date: date.toISOString().split('T')[0],
+      notes: `Rescheduled: ${t.notes || "Focus on key concepts."}`,
+    };
+  });
+
+  return {
+    summary: `I've adjusted your schedule to fit the remaining ${daysLeft} days. Don't worry about the skips—focus on these next steps!`,
+    tasks: mockTasks,
+  };
+};
+
+module.exports = { generateStudyPlan, adjustStudyPlan, answerQuestion, voiceAnswer };

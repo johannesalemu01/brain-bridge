@@ -48,12 +48,11 @@ const studyPlanSchema = new mongoose.Schema(
 );
 
 // Recalculate progress before saving
-studyPlanSchema.pre('save', function (next) {
+studyPlanSchema.pre('save', function () {
   if (this.tasks.length > 0) {
     const done = this.tasks.filter((t) => t.status === 'completed').length;
     this.progressPercent = Math.round((done / this.tasks.length) * 100);
   }
-  next();
 });
 
 module.exports = mongoose.model('StudyPlan', studyPlanSchema);

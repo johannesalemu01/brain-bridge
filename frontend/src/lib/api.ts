@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -47,6 +47,7 @@ export const authApi = {
 // ── Study Planner ─────────────────────────────
 export const plannerApi = {
   generate: (data: object) => api.post('/planner/generate', data),
+  adjust: (id: string) => api.post(`/planner/${id}/adjust`),
   getAll: () => api.get('/planner'),
   getOne: (id: string) => api.get(`/planner/${id}`),
   updateTask: (planId: string, taskId: string, data: object) =>
