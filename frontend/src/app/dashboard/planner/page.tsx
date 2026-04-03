@@ -254,7 +254,6 @@ export default function PlannerPage() {
             </div>
           </div>
         </div>
-        </div>
       )}
     </div>
   );
