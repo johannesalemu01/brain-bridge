@@ -5,6 +5,8 @@ import { getUser } from "@/lib/auth";
 import { motion } from "framer-motion";
 import { BookOpen, MessagesSquare, Mic, ArrowRight, Activity, Clock, Flame } from "lucide-react";
 import Link from "next/link";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function DashboardHome() {
   const [user, setUser] = useState<any>(null);
@@ -42,85 +44,114 @@ export default function DashboardHome() {
 
       {/* ── Stats ── */}
       <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="glass p-6 border-l-4 border-l-violet-500 rounded-xl flex items-center gap-4">
-           <div className="w-12 h-12 rounded-full bg-violet-500/20 flex items-center justify-center">
-             <Flame className="w-6 h-6 text-violet-400" />
-           </div>
-           <div>
-             <p className="text-white/60 text-sm font-medium">Study Streak</p>
-             <p className="text-2xl font-bold text-white">4 Days</p>
-           </div>
-        </div>
-        <div className="glass p-6 border-l-4 border-l-cyan-500 rounded-xl flex items-center gap-4">
-           <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
-             <Clock className="w-6 h-6 text-cyan-400" />
-           </div>
-           <div>
-             <p className="text-white/60 text-sm font-medium">Hours Learned</p>
-             <p className="text-2xl font-bold text-white">12.5 hrs</p>
-           </div>
-        </div>
-        <div className="glass p-6 border-l-4 border-l-purple-500 rounded-xl flex items-center gap-4">
-           <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-             <Activity className="w-6 h-6 text-purple-400" />
-           </div>
-           <div>
-             <p className="text-white/60 text-sm font-medium">Tasks Completed</p>
-             <p className="text-2xl font-bold text-white">28</p>
-           </div>
-        </div>
+        <Card className="p-6 border-l-4 border-l-violet-500 bg-violet-500/5 hover:bg-violet-500/10 transition-colors">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-violet-500/20 flex items-center justify-center">
+              <Flame className="w-6 h-6 text-violet-400" />
+            </div>
+            <div>
+              <p className="text-white/60 text-sm font-medium">Study Streak</p>
+              <p className="text-2xl font-bold text-white">4 Days</p>
+            </div>
+          </div>
+        </Card>
+        <Card className="p-6 border-l-4 border-l-cyan-500 bg-cyan-500/5 hover:bg-cyan-500/10 transition-colors">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
+              <Clock className="w-6 h-6 text-cyan-400" />
+            </div>
+            <div>
+              <p className="text-white/60 text-sm font-medium">Hours Learned</p>
+              <p className="text-2xl font-bold text-white">12.5 hrs</p>
+            </div>
+          </div>
+        </Card>
+        <Card className="p-6 border-l-4 border-l-purple-500 bg-purple-500/5 hover:bg-purple-500/10 transition-colors">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+              <Activity className="w-6 h-6 text-purple-400" />
+            </div>
+            <div>
+              <p className="text-white/60 text-sm font-medium">Tasks Completed</p>
+              <p className="text-2xl font-bold text-white">28</p>
+            </div>
+          </div>
+        </Card>
       </motion.div>
 
       {/* ── Quick Actions / Features ── */}
       <motion.div variants={item}>
-        <h2 className="section-title">Jump Right In</h2>
-        <p className="section-sub">Access your intelligent learning tools instantly.</p>
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-white tracking-tight">Jump Right In</h2>
+          <p className="text-white/60 text-sm">Access your intelligent learning tools instantly.</p>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link href="/dashboard/planner" className="glass-hover p-6 rounded-2xl group flex flex-col items-start text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-[40px] group-hover:bg-violet-500/20 transition-colors" />
-            <div className="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <BookOpen className="w-6 h-6 text-violet-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2">AI Study Planner</h3>
-            <p className="text-white/60 text-sm mb-6 flex-1">View your personalized schedule and track your daily subjects.</p>
-            <span className="text-violet-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-              View Plan <ArrowRight className="w-4 h-4" />
-            </span>
+          <Link href="/dashboard/planner">
+            <Card className="h-full hover:bg-white/10 transition-all group relative overflow-hidden border-white/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-[40px] group-hover:bg-violet-500/20 transition-colors" />
+              <CardHeader>
+                <div className="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-6 h-6 text-violet-400" />
+                </div>
+                <CardTitle className="text-xl">AI Study Planner</CardTitle>
+                <CardDescription>View your personalized schedule and track your daily subjects.</CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <span className="text-violet-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                  View Plan <ArrowRight className="w-4 h-4" />
+                </span>
+              </CardContent>
+            </Card>
           </Link>
 
-          <Link href="/dashboard/voice" className="glass-hover p-6 rounded-2xl group flex flex-col items-start text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-colors" />
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <Mic className="w-6 h-6 text-cyan-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2">Voice Learning</h3>
-            <p className="text-white/60 text-sm mb-6 flex-1">Ask questions and learn using Amharic or English voice chat.</p>
-            <span className="text-cyan-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-              Start Session <ArrowRight className="w-4 h-4" />
-            </span>
+          <Link href="/dashboard/voice">
+            <Card className="h-full hover:bg-white/10 transition-all group relative overflow-hidden border-white/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-colors" />
+              <CardHeader>
+                <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Mic className="w-6 h-6 text-cyan-400" />
+                </div>
+                <CardTitle className="text-xl">Voice Learning</CardTitle>
+                <CardDescription>Ask questions and learn using Amharic or English voice chat.</CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <span className="text-cyan-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Start Session <ArrowRight className="w-4 h-4" />
+                </span>
+              </CardContent>
+            </Card>
           </Link>
 
-          <Link href="/dashboard/qa" className="glass-hover p-6 rounded-2xl group flex flex-col items-start text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px] group-hover:bg-purple-500/20 transition-colors" />
-            <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <MessagesSquare className="w-6 h-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2">Q&A Knowledge Base</h3>
-            <p className="text-white/60 text-sm mb-6 flex-1">Explore teacher-verified AI answers to student questions.</p>
-            <span className="text-purple-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-              Ask Question <ArrowRight className="w-4 h-4" />
-            </span>
+          <Link href="/dashboard/qa">
+            <Card className="h-full hover:bg-white/10 transition-all group relative overflow-hidden border-white/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px] group-hover:bg-purple-500/20 transition-colors" />
+              <CardHeader>
+                <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <MessagesSquare className="w-6 h-6 text-purple-400" />
+                </div>
+                <CardTitle className="text-xl">Q&A Knowledge Base</CardTitle>
+                <CardDescription>Explore teacher-verified AI answers to student questions.</CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <span className="text-purple-400 font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Ask Question <ArrowRight className="w-4 h-4" />
+                </span>
+              </CardContent>
+            </Card>
           </Link>
         </div>
       </motion.div>
 
-      {/* ── Recent Activity Placeholder ── */}
-      <motion.div variants={item} className="glass p-6 rounded-2xl">
-        <h2 className="text-xl font-bold text-white mb-6">Recent Activity</h2>
-        <div className="space-y-4">
+      {/* ── Recent Activity ── */}
+      <motion.div variants={item}>
+        <Card className="border-white/5 bg-white/5">
+          <CardHeader>
+            <CardTitle className="text-xl">Recent Activity</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
             {[1, 2, 3].map((_, i) => (
-               <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+               <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-default">
                    <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center hidden sm:flex">
                        <Activity className="w-5 h-5 text-violet-400" />
                    </div>
@@ -130,7 +161,8 @@ export default function DashboardHome() {
                    </div>
                </div>
             ))}
-        </div>
+          </CardContent>
+        </Card>
       </motion.div>
 
     </motion.div>
