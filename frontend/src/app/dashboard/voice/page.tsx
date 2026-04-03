@@ -15,11 +15,13 @@ export default function VoicePage() {
   const [sessions, setSessions] = useState<any[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
-  const [language, setLanguage] = useState("am"); // Default Amharic
+  const [language, setLanguage] = useState("en"); // Default Amharic
   const [processing, setProcessing] = useState(false);
   const [speaking, setSpeaking] = useState<string | null>(null);
 
   const recognitionRef = useRef<any>(null);
+  const transcriptRef = useRef("");
+  const autoSubmittingRef = useRef(false);
   
   const fetchHistory = async () => {
     try {
@@ -34,6 +36,10 @@ export default function VoicePage() {
     fetchHistory();
   }, []);
 
+  useEffect(() => {
+    transcriptRef.current = transcript;
+  }, [transcript]);
+
   const handleStartRecording = () => {
     if (!SpeechRecognition) {
       toast.error("Voice recognition not supported in this browser. Try Chrome.");
@@ -41,6 +47,7 @@ export default function VoicePage() {
     }
     
     setTranscript("");
+    transcriptRef.current = "";
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = true;
@@ -49,11 +56,13 @@ export default function VoicePage() {
     recognition.onstart = () => setIsRecording(true);
     
     recognition.onresult = (event: any) => {
-      let currentTranscript = '';
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
+      let currentTranscript = "";
+      for (let i = 0; i < event.results.length; i += 1) {
         currentTranscript += event.results[i][0].transcript;
       }
+      currentTranscript = currentTranscript.trim();
       setTranscript(currentTranscript);
+      transcriptRef.current = currentTranscript;
     };
     
     recognition.onerror = (event: any) => {
@@ -66,9 +75,12 @@ export default function VoicePage() {
     
     recognition.onend = () => {
       setIsRecording(false);
-      // Automatically submit when done speaking
-      if (recognitionRef.current?.submitOnEnd) {
-        submitVoice(recognitionRef.current.finalText);
+      const finalText = transcriptRef.current.trim();
+      if (finalText && !autoSubmittingRef.current) {
+        autoSubmittingRef.current = true;
+        submitVoice(finalText).finally(() => {
+          autoSubmittingRef.current = false;
+        });
       }
     };
     
@@ -78,20 +90,19 @@ export default function VoicePage() {
 
   const handleStopRecording = () => {
     if (recognitionRef.current) {
-      recognitionRef.current.submitOnEnd = true;
-      recognitionRef.current.finalText = transcript;
       recognitionRef.current.stop();
     }
   };
 
-  const submitVoice = async (textToSubmit: string) => {
+  const submitVoice = async (textToSubmit: string, inputType: "voice" | "text" = "voice") => {
     if (!textToSubmit.trim()) return;
     
     setProcessing(true);
     try {
       const { data } = await voiceApi.ask({
         transcript: textToSubmit,
-        language
+        language,
+        inputType,
       });
       await fetchHistory();
       playAudio(data.data.aiResponse, language, data.data.session._id);
@@ -121,7 +132,7 @@ export default function VoicePage() {
 
   const handleManualSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if(transcript) submitVoice(transcript);
+    if (transcript.trim() && !processing) submitVoice(transcript, "text");
   };
 
   const handleSaveToQA = async (id: string) => {
@@ -219,16 +230,22 @@ export default function VoicePage() {
                </button>
            )}
 
-           {!isRecording && transcript && !processing && (
+           {!isRecording && (
                <form onSubmit={handleManualSubmit} className="mt-12 w-full max-w-xl group relative animate-in slide-in-from-bottom-4 duration-500">
                    <input 
                      type="text" 
                      value={transcript}
                      onChange={e => setTranscript(e.target.value)}
                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 pr-20 text-white text-lg focus:outline-none focus:border-amber-500/50 shadow-2xl transition-all"
-                     placeholder="Type or edit your question..."
+                     placeholder="Type your question or edit voice text..."
                    />
-                   <Button type="submit" variant="premium" size="icon" className="absolute right-2.5 top-1/2 -translate-y-1/2 h-12 w-12 rounded-xl">
+                   <Button
+                     type="submit"
+                     variant="premium"
+                     size="icon"
+                     disabled={!transcript.trim() || processing}
+                     className="absolute right-2.5 top-1/2 -translate-y-1/2 h-12 w-12 rounded-xl"
+                   >
                        <ArrowRight className="w-6 h-6" />
                    </Button>
                </form>

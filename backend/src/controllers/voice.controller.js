@@ -6,7 +6,7 @@ const { success, error } = require("../utils/response");
 // Accepts transcript (text) from browser STT, returns AI text answer
 const ask = async (req, res) => {
   try {
-    const { transcript, language, subject } = req.body;
+    const { transcript, language, subject, inputType } = req.body;
     if (!transcript) return error(res, "Transcript is required.", 400);
 
     const lang = language || req.user.language || "en";
@@ -15,7 +15,7 @@ const ask = async (req, res) => {
     const session = await VoiceSession.create({
       user: req.user._id,
       language: lang,
-      inputType: "voice",
+      inputType: inputType === "text" ? "text" : "voice",
       transcript,
       aiResponse,
       subject: subject || "General",

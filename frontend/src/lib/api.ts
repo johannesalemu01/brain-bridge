@@ -71,7 +71,7 @@ export const qaApi = {
 
 // ── Voice ─────────────────────────────────────
 export const voiceApi = {
-  ask: (data: { transcript: string; language?: string; subject?: string }) =>
+  ask: (data: { transcript: string; language?: string; subject?: string; inputType?: "voice" | "text" }) =>
     api.post("/voice/ask", data),
   getHistory: () => api.get("/voice/history"),
   saveToQA: (id: string) => api.post(`/voice/${id}/save-to-qa`),
