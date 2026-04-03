@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { BrainCircuit, Mail, Lock, User, UserPlus, Loader2, GraduationCap, Users } from "lucide-react";
 import toast from "react-hot-toast";
 import { authApi } from "@/lib/api";
@@ -44,8 +45,20 @@ export default function RegisterPage() {
       <div className="absolute top-[10%] left-[5%] w-24 h-12 bg-blue-500 rounded-lg shadow-[0_6px_0_0_#1d4ed8] lego-dot rotate-12 animate-float opacity-80" />
       <div className="absolute top-[15%] right-[8%] w-16 h-16 bg-red-500 rounded-lg shadow-[0_6px_0_0_#b91c1c] lego-dot -rotate-12 animate-bounce opacity-70" />
       <div className="absolute bottom-[20%] left-[10%] w-16 h-16 bg-yellow-400 rounded-lg shadow-[0_6px_0_0_#d97706] lego-dot rotate-6 animate-pulse opacity-80" />
-      <div className="absolute bottom-[10%] right-[5%] w-32 h-12 bg-green-500 rounded-lg shadow-[0_6px_0_0_#15803d] lego-dot -rotate-6 animate-float opacity-70" />
+      <div className="absolute bottom-[10%] left-[8%] w-32 h-12 bg-green-500 rounded-lg shadow-[0_6px_0_0_#15803d] lego-dot -rotate-6 animate-float opacity-70" />
       
+      {/* Robot Image */}
+      <div className="hidden lg:block absolute bottom-[-2%] right-[2%] w-[28rem] h-[28rem] xl:w-[32rem] xl:h-[32rem] z-20 pointer-events-none animate-float drop-shadow-[0_20px_30px_rgba(0,0,0,0.15)]">
+        <Image 
+          src="/images/robot_bag.png" 
+          alt="Playful Robot carrying a bag" 
+          fill 
+          className="object-contain" 
+          priority 
+          sizes="(max-width: 1280px) 448px, 512px" 
+        />
+      </div>
+
       {/* Soft page backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.1),transparent)]" />
 

@@ -19,7 +19,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-const heroImage = "/images/children_studing.jpg";
+const heroImage = "/images/robot_study.png";
 
 export default function LandingPage() {
   return (
@@ -32,16 +32,16 @@ export default function LandingPage() {
       {/* ── Hero ── */}
       <section className="relative pt-32 pb-16 sm:pt-36 lg:pt-40 lg:pb-24">
         <div className="container mx-auto max-w-6xl px-5 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-[1fr,1.05fr] lg:gap-16">
-            <div className="order-2 text-center lg:order-1 lg:text-left">
-              <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-amber-200/80 bg-white/70 px-4 py-2 shadow-sm backdrop-blur-sm lg:justify-start dark:border-amber-400/30 dark:bg-slate-900/70">
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12 lg:grid-cols-[1.3fr,1fr] lg:gap-16">
+            <div className="order-2 text-center md:order-1 md:text-left">
+              <div className="mb-6 inline-flex flex-wrap items-center justify-center md:justify-start gap-2 rounded-full border border-amber-200/80 bg-white/70 px-4 py-2 shadow-sm backdrop-blur-sm dark:border-amber-400/30 dark:bg-slate-900/70">
                 <Sparkles className="h-4 w-4 text-amber-600" />
                 <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-900/80 dark:text-amber-200/90">
                   Calm, curious, connected learning
                 </span>
               </div>
 
-              <h1 className="mb-6 text-5xl font-black leading-[1.05] tracking-tight text-slate-900 sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] animate-rubber-band dark:text-slate-100">
+              <h1 className="mb-6 text-5xl font-black leading-[1.05] tracking-tight text-slate-900 sm:text-6xl md:text-5xl lg:text-[4rem] xl:text-[4.5rem] animate-rubber-band dark:text-slate-100">
                 Think big,
                 <br />
                 <span className="bg-gradient-to-r from-blue-500 via-yellow-400 to-green-500 bg-clip-text text-transparent drop-shadow-sm">
@@ -49,7 +49,7 @@ export default function LandingPage() {
                 </span>
               </h1>
 
-              <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-600 lg:mx-0 mx-auto dark:text-slate-300">
+              <p className="mb-10 max-w-xl text-lg leading-relaxed text-slate-600 md:mx-0 mx-auto dark:text-slate-300">
                 BrainBridge blends AI study planning, voice tutoring in{" "}
                 <strong className="font-semibold text-teal-800 dark:text-teal-300">
                   Amharic & English
@@ -59,7 +59,7 @@ export default function LandingPage() {
                 dream.
               </p>
 
-              <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
+              <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center md:justify-start">
                 <Button
                   asChild
                   variant="premium"
@@ -81,7 +81,7 @@ export default function LandingPage() {
                 </Button>
               </div>
 
-              <ul className="mt-10 flex flex-col gap-3 text-left text-sm font-medium text-slate-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8 lg:justify-start dark:text-slate-300">
+              <ul className="mt-10 flex flex-col gap-3 text-left text-sm font-medium text-slate-600 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start sm:gap-x-8 dark:text-slate-300">
                 {[
                   "Personalized AI study plans",
                   "Voice-first Q&A in your language",
@@ -95,11 +95,11 @@ export default function LandingPage() {
               </ul>
             </div>
 
-            <div className="order-1 lg:order-2">
-              <div className="relative mx-auto max-w-xl lg:max-w-none">
+            <div className="order-1 md:order-2">
+              <div className="relative mx-auto max-w-xs md:max-w-sm lg:max-w-[70%] lg:mr-4">
                 <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-amber-200/60 via-orange-100/40 to-teal-200/50 blur-2xl lg:-inset-8" />
                 <div className="relative overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-[0_32px_64px_-12px_rgba(180,83,9,0.25)] ring-1 ring-amber-100 dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-700">
-                  <div className="relative aspect-[4/5] w-full sm:aspect-[5/6] lg:aspect-[3/4]">
+                  <div className="relative aspect-square w-full sm:aspect-[4/5]">
                     <Image
                       src={heroImage}
                       alt="A student relaxed with a book, studying comfortably while lying down"
@@ -233,18 +233,21 @@ export default function LandingPage() {
       {/* ── CTA band ── */}
       <section className="py-20 sm:py-28">
         <div className="container mx-auto max-w-4xl px-5 lg:px-8">
-          <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-blue-600 via-yellow-500 to-green-600 px-8 py-14 text-center shadow-2xl sm:px-12">
-            <h2 className="relative text-4xl font-black text-white sm:text-5xl">
+          <div className="relative overflow-hidden rounded-[3rem] border-8 border-slate-900 bg-yellow-400 px-8 py-16 text-center shadow-[16px_16px_0_0_#0f172a] sm:px-12 transition-transform hover:-translate-y-2 hover:shadow-[20px_20px_0_0_#0f172a] dark:border-slate-800 dark:shadow-[16px_16px_0_0_#020617]">
+            {/* Playful background pattern dots */}
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#0f172a_3px,transparent_3px)] [background-size:24px_24px] dark:bg-[radial-gradient(#000000_3px,transparent_3px)]" />
+            
+            <h2 className="relative text-4xl font-black text-slate-900 sm:text-5xl">
               Ready to start your adventure?
             </h2>
-            <p className="relative mx-auto mt-4 max-w-lg text-lg font-bold text-white/90">
-              Join thousands of brainy kids building their future with
-              BrainBridge!
+            <p className="relative mx-auto mt-4 max-w-lg text-lg font-bold text-slate-800">
+              Join thousands of brainy kids building their future with BrainBridge!
             </p>
+            
             <Button
               asChild
               size="xl"
-              className="relative mt-10 h-16 rounded-full border-0 bg-white px-10 text-lg font-black text-blue-600 shadow-xl hover:scale-105 transition-transform"
+              className="relative mt-10 h-16 rounded-full border-4 border-slate-900 bg-white px-10 text-lg font-black text-slate-900 shadow-[0_6px_0_0_#0f172a] hover:bg-slate-50 hover:-translate-y-1 hover:shadow-[0_10px_0_0_#0f172a] active:translate-y-1 active:shadow-[0_0px_0_0_#0f172a] transition-all dark:border-slate-800 dark:shadow-[0_6px_0_0_#020617] dark:hover:shadow-[0_10px_0_0_#020617] dark:active:shadow-[0_0px_0_0_#020617]"
             >
               <Link href="/register">Let&apos;s Go! 🚀</Link>
             </Button>
