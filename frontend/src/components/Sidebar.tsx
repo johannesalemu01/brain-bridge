@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BrainCircuit, LayoutDashboard, BookOpen, Mic, MessagesSquare, Users, Settings, LogOut } from "lucide-react";
+import { BrainCircuit, LayoutDashboard, BookOpen, Mic, MessagesSquare, Users, Settings, LogOut, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { clearAuth, getUser } from "@/lib/auth";
 import { useEffect, useState } from "react";
@@ -10,10 +10,16 @@ import { useEffect, useState } from "react";
 export default function Sidebar() {
   const pathname = usePathname();
   const [user, setUser] = useState<any>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     setUser(getUser());
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   const handleLogout = () => {
     clearAuth();
@@ -31,8 +37,8 @@ export default function Sidebar() {
     navItems.push({ name: "Teacher Panel", href: "/dashboard/teacher", icon: Users });
   }
 
-  return (
-    <aside className="fixed inset-y-0 left-0 w-64 bg-black/40 backdrop-blur-xl border-r border-white/10 flex flex-col z-40">
+  const sidebarContent = (
+    <>
       <div className="h-20 flex items-center px-6 border-b border-white/10">
         <Link href="/" className="flex items-center gap-2">
           <div className="p-1.5 rounded-lg bg-gradient-to-br from-amber-500 to-teal-600">
@@ -85,6 +91,42 @@ export default function Sidebar() {
             </div>
         )}
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <button
+        className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-black/60 backdrop-blur-xl border border-white/10 text-white shadow-lg"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle menu"
+      >
+        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-30 bg-black/50 backdrop-blur-sm"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 w-64 bg-black/40 backdrop-blur-xl border-r border-white/10 flex-col z-40">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile Sidebar */}
+      <aside
+        className={cn(
+          "lg:hidden fixed inset-y-0 left-0 w-72 bg-black/90 backdrop-blur-xl border-r border-white/10 flex flex-col z-40 transition-transform duration-300",
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        {sidebarContent}
+      </aside>
+    </>
   );
 }

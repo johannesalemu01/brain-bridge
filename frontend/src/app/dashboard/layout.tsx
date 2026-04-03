@@ -21,12 +21,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar />
-      <main className="flex-1 ml-64 overflow-y-auto relative">
+      <main className="flex-1 lg:ml-64 overflow-y-auto relative">
         {/* Background glow effects for dashboard */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
         
-        <div className="p-8 max-w-7xl mx-auto min-h-full">
+        <div className="p-4 pt-16 lg:p-8 lg:pt-8 max-w-7xl mx-auto min-h-full">
             {children}
         </div>
       </main>
