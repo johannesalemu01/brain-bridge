@@ -6,6 +6,7 @@ const { protect } = require('../middleware/auth.middleware');
 router.use(protect);
 
 router.post('/generate', generate);
+router.post('/:id/adjust', adjust);
 router.get('/', getPlans);
 router.get('/:id', getPlan);
 router.patch('/:id/task/:taskId', updateTask);

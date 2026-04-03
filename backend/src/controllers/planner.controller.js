@@ -8,13 +8,13 @@ const { success, error } = require("../utils/response");
 // POST /api/planner/generate
 const generate = async (req, res) => {
   try {
-    const { subjects, examDate, title } = req.body;
+    const { subjects, examDate, title, availableHoursPerDay } = req.body;
     if (!subjects?.length || !examDate) {
       return error(res, "Subjects and exam date are required.", 400);
     }
 
-    const hoursPerDay = req.user.studyHoursPerDay || 2;
-    const language = req.user.language || "en";
+    const hoursPerDay = availableHoursPerDay || req.user.studyHoursPerDay || 2;
+    const language = req.user.language || 'en';
 
     const aiResult = await generateStudyPlan({
       subjects,
@@ -103,7 +103,6 @@ const deletePlan = async (req, res) => {
   }
 };
 
-// POST /api/planner/:id/adjust
 // Re-plans remaining tasks when a student falls behind
 const adjust = async (req, res) => {
   try {
