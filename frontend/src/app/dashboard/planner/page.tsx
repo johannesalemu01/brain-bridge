@@ -63,6 +63,7 @@ export default function PlannerPage() {
 
 
 
+
   if (loading) return <div className="skeleton w-full h-screen" />;
 
   return (
@@ -252,6 +253,7 @@ export default function PlannerPage() {
               ))}
             </div>
           </div>
+        </div>
         </div>
       )}
     </div>

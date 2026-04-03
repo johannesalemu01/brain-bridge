@@ -10,6 +10,7 @@ router.post('/:id/adjust', adjust);
 router.get('/', getPlans);
 router.get('/:id', getPlan);
 router.patch('/:id/task/:taskId', updateTask);
+router.post('/:id/adjust', adjust);
 router.delete('/:id', deletePlan);
 
 module.exports = router;
