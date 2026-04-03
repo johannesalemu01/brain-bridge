@@ -20,7 +20,7 @@ connectDB();
 const parseOrigins = () => {
   const raw = process.env.CLIENT_URL;
   if (!raw) {
-    return ['http://localhost:3000', 'http://127.0.0.1:3000'];
+    return ['http://localhost:3000', 'http://127.0.0.1:3000','https://brain-bridge-blush.vercel.app'];
   }
   return raw.split(',').map((s) => s.trim()).filter(Boolean);
 };
