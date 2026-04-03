@@ -53,6 +53,7 @@ export const plannerApi = {
   updateTask: (planId: string, taskId: string, data: object) =>
     api.patch(`/planner/${planId}/task/${taskId}`, data),
   adjust: (id: string) => api.post(`/planner/${id}/adjust`),
+  generateQuiz: (planId: string, taskId: string) => api.post(`/planner/${planId}/task/${taskId}/quiz`),
   delete: (id: string) => api.delete(`/planner/${id}`),
 };
 

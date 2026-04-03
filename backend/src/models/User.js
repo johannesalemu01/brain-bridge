@@ -50,6 +50,23 @@ const userSchema = new mongoose.Schema(
       min: 0.5,
       max: 12,
     },
+    // Gamification
+    xp: {
+      type: Number,
+      default: 0,
+    },
+    level: {
+      type: Number,
+      default: 1,
+    },
+    streakDays: {
+      type: Number,
+      default: 0,
+    },
+    lastActiveDate: {
+      type: Date,
+      default: null,
+    },
     isActive: {
       type: Boolean,
       default: true,

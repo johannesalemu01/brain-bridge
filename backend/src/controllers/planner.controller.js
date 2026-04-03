@@ -69,7 +69,7 @@ const getPlan = async (req, res) => {
 // PATCH /api/planner/:id/task/:taskId
 const updateTask = async (req, res) => {
   try {
-    const { status, notes } = req.body;
+    const { status, notes, date } = req.body;
     const plan = await StudyPlan.findOne({
       _id: req.params.id,
       user: req.user._id,
@@ -79,11 +79,41 @@ const updateTask = async (req, res) => {
     const task = plan.tasks.id(req.params.taskId);
     if (!task) return error(res, "Task not found.", 404);
 
+    // Gamification XP Logic
+    let xpGained = 0;
+    if (status === 'completed' && task.status !== 'completed') {
+      xpGained = Math.round(task.duration * 10);
+      req.user.xp += xpGained;
+      
+      const newLevel = Math.floor(req.user.xp / 1000) + 1;
+      if (newLevel > req.user.level) {
+        req.user.level = newLevel;
+      }
+      
+      const today = new Date().toISOString().split('T')[0];
+      const lastActive = req.user.lastActiveDate ? req.user.lastActiveDate.toISOString().split('T')[0] : null;
+      
+      if (!lastActive) {
+        req.user.streakDays = 1;
+      } else if (lastActive !== today) {
+        const diffDays = Math.floor((new Date(today) - new Date(lastActive)) / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) {
+          req.user.streakDays += 1;
+        } else {
+          req.user.streakDays = 1;
+        }
+      }
+      
+      req.user.lastActiveDate = new Date();
+      await req.user.save();
+    }
+
     if (status) task.status = status;
     if (notes !== undefined) task.notes = notes;
+    if (date !== undefined) task.date = date;
 
     await plan.save();
-    return success(res, { plan }, "Task updated");
+    return success(res, { plan, gamification: { xpGained, userXp: req.user.xp, userLevel: req.user.level, streakDays: req.user.streakDays } }, "Task updated");
   } catch (err) {
     console.error(err);
     return error(res, "Failed to update task.", 500);
@@ -156,4 +186,29 @@ const adjust = async (req, res) => {
   }
 };
 
-module.exports = { generate, getPlans, getPlan, updateTask, deletePlan, adjust };
+// POST /api/planner/:id/tasks/:taskId/quiz
+const generateQuiz = async (req, res) => {
+  try {
+    const plan = await StudyPlan.findOne({ _id: req.params.id, user: req.user._id });
+    if (!plan) return error(res, 'Plan not found.', 404);
+
+    const task = plan.tasks.id(req.params.taskId);
+    if (!task) return error(res, 'Task not found.', 404);
+
+    const language = req.user.language || 'en';
+    const { generateTaskQuiz } = require("../services/gemini.service");
+    
+    const quiz = await generateTaskQuiz({
+      subject: task.subject,
+      topic: task.topic,
+      language
+    });
+
+    return success(res, { quiz }, 'Quiz generated successfully');
+  } catch (err) {
+    console.error(err);
+    return error(res, 'Failed to generate quiz.', 500);
+  }
+};
+
+module.exports = { generate, getPlans, getPlan, updateTask, deletePlan, adjust, generateQuiz };
