@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { BrainCircuit, Mail, Lock, Loader2, LogIn } from "lucide-react";
 import toast from "react-hot-toast";
 import { authApi } from "@/lib/api";
@@ -32,17 +33,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden py-12 bg-[#fafafa]">
-      {/* ── Decorative Lego Bricks ── */}
-      <div className="absolute top-[15%] left-[10%] w-16 h-16 bg-yellow-400 rounded-lg shadow-[0_6px_0_0_#d97706] lego-dot rotate-12 animate-bounce opacity-80" />
-      <div className="absolute top-[20%] right-[12%] w-24 h-12 bg-blue-500 rounded-lg shadow-[0_6px_0_0_#1d4ed8] lego-dot -rotate-12 animate-float opacity-70" />
-      <div className="absolute bottom-[15%] left-[8%] w-32 h-12 bg-red-500 rounded-lg shadow-[0_6px_0_0_#b91c1c] lego-dot rotate-6 animate-float opacity-80" />
-      <div className="absolute bottom-[10%] right-[10%] w-16 h-16 bg-green-500 rounded-lg shadow-[0_6px_0_0_#15803d] lego-dot -rotate-6 animate-pulse opacity-70" />
+    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden py-12 bg-yellow-400">
+      {/* Playful background pattern dots */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#0f172a_3px,transparent_3px)] [background-size:24px_24px] dark:bg-[radial-gradient(#000000_3px,transparent_3px)] pointer-events-none" />
 
-      {/* Soft page backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(3,169,244,0.1),transparent)]" />
+      {/* Decorative Lego Bricks */}
+      <div className="absolute top-[15%] left-[10%] w-16 h-16 bg-white border-4 border-slate-900 rounded-lg shadow-[8px_8px_0_0_#0f172a] rotate-12 animate-bounce opacity-80" />
+      <div className="absolute top-[20%] right-[12%] w-24 h-12 bg-blue-500 border-4 border-slate-900 rounded-lg shadow-[8px_8px_0_0_#0f172a] -rotate-12 animate-float opacity-70" />
+      <div className="absolute bottom-[10%] left-[8%] w-32 h-12 bg-red-500 border-4 border-slate-900 rounded-lg shadow-[8px_8px_0_0_#0f172a] rotate-6 animate-float opacity-80" />
+      
+      {/* Robot Image Container (Background element) */}
+      <div className="hidden lg:block absolute bottom-[-10%] right-[-10%] xl:right-[-5%] w-[45rem] h-[45rem] xl:w-[50rem] xl:h-[50rem] z-0 pointer-events-none animate-float mix-blend-multiply opacity-90">
+        <Image 
+          src="/images/robot_study.png" 
+          alt="Playful Robot studying" 
+          fill 
+          className="object-contain" 
+          priority 
+          sizes="(max-width: 1280px) 720px, 800px" 
+        />
+      </div>
 
-      <Card className="w-full max-w-md p-2 shadow-[0_20px_0_0_#e2e8f0] relative z-10 border-slate-100 bg-white rounded-[3rem]">
+      <Card className="w-full max-w-xl p-2 md:p-6 relative z-10 border-8 border-slate-900 bg-white rounded-[3rem] shadow-[16px_16px_0_0_#0f172a] hover:-translate-y-1 hover:shadow-[20px_20px_0_0_#0f172a] transition-all dark:border-slate-800 dark:bg-slate-900 dark:shadow-[16px_16px_0_0_#020617]">
         <CardHeader className="flex flex-col items-center pb-8 border-b border-slate-50 mb-6">
           <Link href="/" className="flex items-center gap-2 mb-6 transition-transform hover:scale-110">
             <div className="p-3 rounded-2xl bg-gradient-to-br from-blue-500 via-yellow-400 to-green-500 shadow-xl">
