@@ -115,16 +115,16 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
       {/* Header and Back Button */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild className="rounded-full bg-white/5 hover:bg-white/20 text-white border border-white/10">
+          <Button variant="ghost" size="icon" asChild className="rounded-full bg-muted/50 hover:bg-muted text-foreground border border-border">
             <Link href="/dashboard/planner">
               <ArrowLeft className="w-5 h-5" />
             </Link>
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-white mb-1 tracking-tight">{plan.title}</h1>
-            <p className="text-white/60 text-sm flex items-center gap-2">
+            <h1 className="text-3xl font-bold text-foreground mb-1 tracking-tight">{plan.title}</h1>
+            <p className="text-muted-foreground text-sm flex items-center gap-2">
               <Calendar className="w-4 h-4 text-amber-500" />
-              Exam Date: <span className="font-semibold text-white">{format(new Date(plan.examDate), 'MMMM dd, yyyy')}</span>
+              Exam Date: <span className="font-semibold text-foreground">{format(new Date(plan.examDate), 'MMMM dd, yyyy')}</span>
             </p>
           </div>
         </div>
@@ -151,29 +151,29 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
         </div>
       </div>
 
-      <Card className="p-0 border-white/5 overflow-hidden shadow-2xl shadow-amber-500/5 bg-transparent">
+      <Card className="p-0 border-border overflow-hidden shadow-2xl shadow-amber-500/5 bg-transparent">
         <div className="p-6 md:p-10 relative">
           <div className="absolute top-0 right-0 w-80 h-80 bg-amber-600/5 rounded-full blur-[100px] -z-10" />
           
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-white/5 pb-8 mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-border pb-8 mb-8">
             <div className="flex-1">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="badge badge-purple px-4 py-1.5 text-sm">{plan.status}</span>
                 </div>
                 <Card className="mt-4 bg-amber-500/10 border-amber-500/30 p-5 border-l-4 rounded-xl shadow-inner shadow-amber-500/5">
-                  <p className="text-white/90 leading-relaxed italic text-base"><span className="font-bold text-amber-400 not-italic">AI Recommendation:</span> {plan.aiSummary}</p>
+                  <p className="text-foreground/90 leading-relaxed italic text-base"><span className="font-bold text-amber-500 dark:text-amber-400 not-italic">AI Recommendation:</span> {plan.aiSummary}</p>
                 </Card>
             </div>
             
-            <div className="w-full md:w-80 space-y-5 bg-black/20 p-6 rounded-2xl border border-white/10">
+            <div className="w-full md:w-80 space-y-5 bg-card p-6 rounded-2xl border border-border">
                 <div className="flex justify-between items-end">
                     <div className="space-y-1">
-                      <span className="text-white/60 text-xs font-semibold uppercase tracking-wider block">Overall Progress</span>
-                      <span className="text-amber-400 font-black text-4xl">{plan.progressPercent}%</span>
+                      <span className="text-muted-foreground text-xs font-semibold uppercase tracking-wider block">Overall Progress</span>
+                      <span className="text-amber-600 dark:text-amber-400 font-black text-4xl">{plan.progressPercent}%</span>
                     </div>
                 </div>
-                <Progress value={plan.progressPercent} className="h-3 bg-white/10" />
-                <div className="flex gap-4 text-[11px] font-bold uppercase tracking-widest text-white/60 bg-black/40 p-3 rounded-xl justify-center">
+                <Progress value={plan.progressPercent} className="h-3" />
+                <div className="flex gap-4 text-[11px] font-bold uppercase tracking-widest text-muted-foreground bg-muted p-3 rounded-xl justify-center">
                   <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> {plan.tasks.filter((t:any)=>t.status==='completed').length} Done</span>
                   <span className="flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-500" /> {plan.tasks.filter((t:any)=>t.status==='skipped').length} Skipped</span>
                 </div>
@@ -192,7 +192,7 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
                     ? "bg-emerald-950/30 border-emerald-500/20 opacity-70 grayscale-[0.3]" 
                     : isSkipped
                     ? "bg-red-950/30 border-red-500/30"
-                    : "bg-white/10 border-white/20 hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/20"
+                    : "bg-card border-border hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/20"
                   }`}
                 >
                   <div className="p-6">
@@ -202,7 +202,7 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
                            <Button 
                              size="icon" 
                              variant="ghost" 
-                             className={`w-9 h-9 rounded-full border transition-all ${isDone ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-400 text-white/40'}`}
+                             className={`w-9 h-9 rounded-full border transition-all ${isDone ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-border hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-500 text-muted-foreground'}`}
                              onClick={() => updateTaskStatus(task._id, isDone ? 'pending' : 'completed')}
                            >
                              <CheckCircle2 className="w-4 h-4" />
@@ -211,7 +211,7 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
                              <Button 
                                size="icon" 
                                variant="ghost" 
-                               className={`w-9 h-9 rounded-full border transition-all ${isSkipped ? 'bg-red-500 border-red-500 text-white' : 'border-white/10 hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 text-white/40'}`}
+                               className={`w-9 h-9 rounded-full border transition-all ${isSkipped ? 'bg-red-500 border-red-500 text-white' : 'border-border hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 text-muted-foreground'}`}
                                onClick={() => updateTaskStatus(task._id, isSkipped ? 'pending' : 'skipped')}
                              >
                                <Trash2 className="w-4 h-4" />
@@ -221,23 +221,23 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
                        </div>
                        <div className="flex flex-col items-end gap-2">
                          <span className={`text-[10px] font-black px-2.5 py-1 rounded-md border uppercase tracking-widest ${
-                           task.priority === 'high' ? 'bg-red-500/10 text-red-400 border-red-500/20 shadow-[0_0_10px_rgba(239,68,68,0.1)]' : 
-                           task.priority === 'medium' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 
-                           'bg-teal-500/10 text-teal-400 border-teal-500/20'
+                           task.priority === 'high' ? 'bg-red-500/10 text-red-500 border-red-500/20 shadow-[0_0_10px_rgba(239,68,68,0.1)]' : 
+                           task.priority === 'medium' ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' : 
+                           'bg-teal-500/10 text-teal-500 border-teal-500/20'
                          }`}>
                            {task.priority}
                          </span>
                        </div>
                     </div>
-                    <p className="text-xs font-bold text-amber-400 mb-1 uppercase tracking-wider drop-shadow-sm">{task.subject}</p>
-                    <h4 className={`text-white text-lg font-bold leading-tight mb-5 ${isDone ? "line-through opacity-70" : ""}`}>{task.topic}</h4>
-                    <div className="flex justify-between items-center text-xs text-white/70 font-semibold bg-black/20 p-2.5 rounded-lg mb-4">
-                       <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-white/50" /> {format(new Date(task.date), 'MMM dd')}</span>
-                       <span className="flex items-center gap-1 text-emerald-400"><Clock className="w-4 h-4" /> {task.duration}m</span>
+                    <p className="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1 uppercase tracking-wider drop-shadow-sm">{task.subject}</p>
+                    <h4 className={`text-foreground text-lg font-bold leading-tight mb-5 ${isDone ? "line-through opacity-70" : ""}`}>{task.topic}</h4>
+                    <div className="flex justify-between items-center text-xs text-muted-foreground font-semibold bg-muted p-2.5 rounded-lg mb-4">
+                       <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-muted-foreground opacity-50" /> {format(new Date(task.date), 'MMM dd')}</span>
+                       <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400"><Clock className="w-4 h-4" /> {task.duration}m</span>
                     </div>
                     
                     {!isDone && !isSkipped && (
-                      <div className="flex items-center gap-2 pt-4 border-t border-white/10">
+                      <div className="flex items-center gap-2 pt-4 border-t border-border">
                         <Button 
                           onClick={() => {
                             setActiveTaskForPomodoro(task);
@@ -250,7 +250,7 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
                         <Button 
                           variant="outline" 
                           onClick={() => router.push(`/dashboard/voice?subject=${encodeURIComponent(task.subject)}&topic=${encodeURIComponent(task.topic)}`)}
-                          className="flex-1 border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/10 hover:text-indigo-300 bg-transparent"
+                          className="flex-1 border-indigo-500/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 hover:text-indigo-700 dark:hover:text-indigo-300 bg-transparent"
                         >
                           <Mic className="w-4 h-4 mr-1.5" /> Ask AI Tutor
                         </Button>
@@ -266,19 +266,19 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
 
       {/* Focus Mode Pomodoro Dialog */}
       <Dialog open={!!activeTaskForPomodoro} onOpenChange={(open) => !open && closePomodoro()}>
-        <DialogContent className="sm:max-w-md bg-black/95 border-amber-500/30">
+        <DialogContent className="sm:max-w-md bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-center text-amber-400 flex flex-col items-center gap-2">
+            <DialogTitle className="text-center text-amber-600 dark:text-amber-400 flex flex-col items-center gap-2">
               <Clock className="w-8 h-8" />
               Focus Mode
             </DialogTitle>
-            <DialogDescription className="text-center text-white/60">
-              Stay focused on <strong className="text-white">{activeTaskForPomodoro?.topic}</strong>
+            <DialogDescription className="text-center text-muted-foreground">
+              Stay focused on <strong className="text-foreground">{activeTaskForPomodoro?.topic}</strong>
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center justify-center py-8 relative">
              <div className="absolute inset-0 bg-amber-500/10 rounded-full blur-[80px] -z-10" />
-             <div className="text-7xl font-black text-white font-mono tracking-tighter mb-8 drop-shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+             <div className="text-7xl font-black text-foreground font-mono tracking-tighter mb-8 drop-shadow-[0_0_20px_rgba(245,158,11,0.3)]">
                {String(Math.floor(timeLeft / 60)).padStart(2, '0')}:
                {String(timeLeft % 60).padStart(2, '0')}
              </div>
@@ -287,7 +287,7 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
                <Button 
                 variant="outline" 
                 size="icon" 
-                className="w-14 h-14 rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent" 
+                className="w-14 h-14 rounded-full border-border hover:bg-muted text-foreground bg-transparent" 
                 onClick={resetTimer}
                >
                  <Square className="w-5 h-5 fill-current" />
@@ -302,7 +302,7 @@ export default function PlannerDetailPage({ params }: { params: Promise<{ id: st
              </div>
           </div>
           <DialogFooter className="sm:justify-center">
-             <Button variant="ghost" onClick={closePomodoro} className="text-white/40 hover:text-white">Exit Focus Mode</Button>
+             <Button variant="ghost" onClick={closePomodoro} className="text-muted-foreground hover:text-foreground">Exit Focus Mode</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
