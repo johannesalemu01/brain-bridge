@@ -44,7 +44,7 @@ export default function RegisterPage() {
       {/* Soft page backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 via-yellow-50 to-white" />
 
-      <Card className="w-full max-w-5xl overflow-hidden rounded-[2.5rem] border-0 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] flex flex-col lg:flex-row">
+      <Card className="w-full max-w-6xl min-h-[600px] lg:min-h-[750px] overflow-hidden rounded-[2.5rem] border-0 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] flex flex-col lg:flex-row">
         
         {/* Left Side: Brand Imagery */}
         <div className="relative hidden lg:flex flex-col justify-center bg-yellow-400 p-12 lg:w-5/12 overflow-hidden">
