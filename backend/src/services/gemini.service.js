@@ -281,4 +281,57 @@ Generate up to ${Math.min(daysLeft * 3, 30)} tasks.`;
   };
 };
 
-module.exports = { generateStudyPlan, answerQuestion, voiceAnswer, adjustStudyPlan };
+// ──────────────────────────────────────────────
+// Generate an interactive quiz for a task
+// ──────────────────────────────────────────────
+const generateTaskQuiz = async ({ subject, topic, language }) => {
+  const lang = language === 'am' ? 'Amharic' : 'English';
+  
+  const prompt = `You are an academic tutor preparing a quick, highly specific multiple-choice question to test a student's mastery of a study topic.
+
+Subject: ${subject}
+Topic: ${topic}
+Language: ${lang}
+
+Return ONLY valid JSON in this exact format:
+{
+  "question": "The question text here?",
+  "options": ["Option A", "Option B", "Option C", "Option D"],
+  "correctIndex": number (0-3 representing the correct option),
+  "explanation": "A very brief 1-sentence explanation of why it is correct."
+}
+Make it challenging but fair.`;
+
+  if (hasApiKey) {
+    try {
+      const res = await callOpenRouter({
+        prompt,
+        temperature: 0.7,
+        maxTokens: 500,
+        jsonMode: true,
+      });
+      const parsed = safeJsonParse(res);
+      if (parsed?.question && Array.isArray(parsed.options)) {
+        return parsed;
+      }
+      console.warn("OpenRouter returned invalid Quiz JSON, falling back to mock.");
+    } catch (err) {
+      console.error("OpenRouter quiz error:", err.message);
+    }
+  }
+
+  // ── MOCK (no API key) ──
+  return {
+    question: `What is the most critical fundamental principle regarding '${topic}' in ${subject}?`,
+    options: [
+      "It relies entirely on memorization of dates and formulas.",
+      "It requires understanding the underlying systemic rules.",
+      "It is mostly theoretical and rarely applied practically.",
+      "It was disproven in the late 20th century."
+    ],
+    correctIndex: 1,
+    explanation: "Understanding the underlying rules is always the core principle."
+  };
+};
+
+module.exports = { generateStudyPlan, answerQuestion, voiceAnswer, adjustStudyPlan, generateTaskQuiz };

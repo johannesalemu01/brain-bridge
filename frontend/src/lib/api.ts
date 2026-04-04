@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -53,6 +52,7 @@ export const plannerApi = {
   updateTask: (planId: string, taskId: string, data: object) =>
     api.patch(`/planner/${planId}/task/${taskId}`, data),
   adjust: (id: string) => api.post(`/planner/${id}/adjust`),
+  generateQuiz: (planId: string, taskId: string) => api.post(`/planner/${planId}/task/${taskId}/quiz`),
   delete: (id: string) => api.delete(`/planner/${id}`),
 };
 
@@ -71,8 +71,12 @@ export const qaApi = {
 
 // ── Voice ─────────────────────────────────────
 export const voiceApi = {
-  ask: (data: { transcript: string; language?: string; subject?: string }) =>
-    api.post("/voice/ask", data),
+  ask: (data: {
+    transcript: string;
+    language?: string;
+    subject?: string;
+    inputType?: "voice" | "text";
+  }) => api.post("/voice/ask", data),
   getHistory: () => api.get("/voice/history"),
   saveToQA: (id: string) => api.post(`/voice/${id}/save-to-qa`),
 };
