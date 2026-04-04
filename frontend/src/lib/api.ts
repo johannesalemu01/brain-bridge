@@ -86,4 +86,15 @@ export const dashboardApi = {
   getSummary: () => api.get("/dashboard/summary"),
 };
 
+// ── Community ─────────────────────────────────
+export const communityApi = {
+  createGroup: (data: any) => api.post("/community/groups", data),
+  getGroups: () => api.get("/community/groups"),
+  joinGroup: (groupId: string) => api.post(`/community/groups/${groupId}/join`),
+  createPost: (groupId: string, data: any) => api.post(`/community/groups/${groupId}/posts`, data),
+  getPosts: (groupId: string) => api.get(`/community/groups/${groupId}/posts`),
+  upvotePost: (postId: string) => api.put(`/community/posts/${postId}/upvote`),
+  createComment: (postId: string, data: any) => api.post(`/community/posts/${postId}/comments`, data),
+};
+
 export default api;
