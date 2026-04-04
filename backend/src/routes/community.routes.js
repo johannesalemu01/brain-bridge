@@ -12,6 +12,7 @@ router.post('/groups/:groupId/join', protect, communityController.joinGroup);
 router.post('/groups/:groupId/posts', protect, communityController.createPost);
 router.get('/groups/:groupId/posts', protect, communityController.getPosts);
 router.put('/posts/:postId/upvote', protect, communityController.upvotePost);
+router.post('/posts/:postId/summarize', protect, communityController.summarizePost);
 
 // Comments
 router.post('/posts/:postId/comments', protect, communityController.createComment);

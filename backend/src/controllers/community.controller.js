@@ -1,6 +1,7 @@
 const Group = require('../models/Group');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
+const { summarizeThread } = require('../services/gemini.service');
 
 // Create a new group
 exports.createGroup = async (req, res, next) => {
@@ -122,6 +123,32 @@ exports.createComment = async (req, res, next) => {
     
     await comment.populate('authorId', 'name avatar role');
     res.status(201).json({ success: true, data: comment });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Summarize a post thread using AI
+exports.summarizePost = async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+    if (!post) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+    const comments = await Comment.find({ postId: req.params.postId }).populate('authorId', 'name');
+    
+    const formattedComments = comments.map(c => ({
+      authorName: c.authorId?.name || 'Unknown',
+      content: c.content
+    }));
+
+    const summary = await summarizeThread({
+      title: post.title,
+      content: post.content,
+      comments: formattedComments
+    });
+
+    res.status(200).json({ success: true, data: { summary } });
   } catch (error) {
     next(error);
   }

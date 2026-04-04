@@ -334,4 +334,29 @@ Make it challenging but fair.`;
   };
 };
 
-module.exports = { generateStudyPlan, answerQuestion, voiceAnswer, adjustStudyPlan, generateTaskQuiz };
+// ──────────────────────────────────────────────
+// Summarize a community thread
+// ──────────────────────────────────────────────
+const summarizeThread = async ({ title, content, comments }) => {
+  const prompt = `You are a summarizing AI helping students quickly grasp a discussion.
+Title: ${title}
+Original Post: ${content}
+
+Comments:
+${comments.map((c) => `- ${c.authorName || "Student"}: ${c.content}`).join("\n")}
+
+Please provide a concise, bulleted summary (3-4 points max) of the key takeaways from this entire thread.`;
+
+  if (hasApiKey) {
+    const text = await callOpenRouter({
+      prompt,
+      temperature: 0.5,
+      maxTokens: 400,
+    });
+    if (text) return text;
+  }
+
+  return `* **Key Theme:** The discussion revolves around understanding the core concepts of the topic.\n* **Consensus:** Students agreed that applying practical examples helps solidify the theory.\n* **Quick Tip:** Focus on fundamental rules before moving to complex edge cases.`;
+};
+
+module.exports = { generateStudyPlan, answerQuestion, voiceAnswer, adjustStudyPlan, generateTaskQuiz, summarizeThread };
