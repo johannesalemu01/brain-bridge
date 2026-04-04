@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['student', 'teacher', 'admin'],
+      enum: ['student', 'teacher', 'admin', 'school_admin'],
       default: 'student',
     },
     language: {
@@ -50,10 +50,18 @@ const userSchema = new mongoose.Schema(
       min: 0.5,
       max: 12,
     },
-    // Gamification
+    // Gamification & Community
     xp: {
       type: Number,
       default: 0,
+    },
+    reputationPoints: {
+      type: Number,
+      default: 0,
+    },
+    badges: {
+      type: [String],
+      default: [],
     },
     level: {
       type: Number,
@@ -62,6 +70,21 @@ const userSchema = new mongoose.Schema(
     streakDays: {
       type: Number,
       default: 0,
+    },
+    // Institutional & Subscription Tracker
+    schoolId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'School',
+      default: null,
+    },
+    subscriptionPlan: {
+      type: String,
+      enum: ['free', 'basic', 'standard', 'premium', 'monthly', 'yearly'],
+      default: 'free',
+    },
+    planExpiresAt: {
+      type: Date,
+      default: null,
     },
     lastActiveDate: {
       type: Date,

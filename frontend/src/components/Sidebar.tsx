@@ -45,6 +45,7 @@ export default function Sidebar() {
     { name: "Study Planner", href: "/dashboard/planner", icon: BookOpen },
     { name: "Voice Learning", href: "/dashboard/voice", icon: Mic },
     { name: "Q&A Board", href: "/dashboard/qa", icon: MessagesSquare },
+    { name: "Community", href: "/dashboard/community", icon: Users },
   ];
 
   if (user?.role === "teacher") {

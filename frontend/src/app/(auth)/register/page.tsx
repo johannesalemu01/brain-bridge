@@ -65,6 +65,7 @@ export default function RegisterPage() {
               src="/images/robot_bag.png" 
               alt="Playful Robot" 
               fill 
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain drop-shadow-2xl animate-float" 
               priority
             />
