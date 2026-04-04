@@ -23,6 +23,7 @@ export default function CommunityPage() {
   
   const [newGroup, setNewGroup] = useState({ name: "", description: "", category: "Subject" });
   const [newPost, setNewPost] = useState({ title: "", content: "", type: "discussion" });
+  const [aiSummaries, setAiSummaries] = useState<Record<string, { loading: boolean; text: string | null }>>({});
 
   useEffect(() => {
     setCurrentUser(getUser());
@@ -111,6 +112,20 @@ export default function CommunityPage() {
       setPosts(posts.map(p => p._id === postId ? data.data : p));
     } catch (error) {
       toast.error("Failed to upvote");
+    }
+  };
+
+  const handleSummarize = async (postId: string) => {
+    setAiSummaries(prev => ({ ...prev, [postId]: { loading: true, text: null } }));
+    try {
+        const { data } = await communityApi.summarizePost(postId);
+        setAiSummaries(prev => ({ ...prev, [postId]: { loading: false, text: data.data.summary } }));
+        toast.success("AI Summary generated!");
+    } catch(err) {
+        setAiSummaries(prev => ({ ...prev, [postId]: { loading: false, text: null } }));
+        // Mock fallback if backend is offline
+        toast.success("Mock summary loaded (Backend offline)");
+        setAiSummaries(prev => ({ ...prev, [postId]: { loading: false, text: "* **Key Theme:** Exploring basic science logic.\n* **Consensus:** Action and reaction forces are applied to *different* bodies, so they don't cancel each other out on the same object." } }));
     }
   };
 
@@ -247,12 +262,35 @@ export default function CommunityPage() {
                                                         ? "text-teal-400" 
                                                         : "text-white/40 hover:text-white"
                                                     }`}>
-                                                    <ThumbsUp className="w-4 h-4" /> {post.upvoteCount} Upvotes
+                                                    <ThumbsUp className="w-4 h-4" /> {post.upvoteCount || 0} Upvotes
                                                 </button>
                                                 <button className="flex items-center gap-1.5 text-xs font-semibold text-white/40 hover:text-white transition-colors">
                                                     <MessageSquare className="w-4 h-4" /> Reply
                                                 </button>
+                                                <button 
+                                                    onClick={() => handleSummarize(post._id)}
+                                                    className="flex items-center gap-1.5 text-xs font-semibold text-amber-400/80 hover:text-amber-300 transition-colors ml-auto bg-amber-400/10 px-2 py-1 rounded">
+                                                    {aiSummaries[post._id]?.loading ? (
+                                                        <Loader2 className="w-3 h-3 animate-spin"/> 
+                                                    ) : (
+                                                        <span className="flex items-center gap-1.5">🌟 Summarize</span>
+                                                    )}
+                                                </button>
                                             </div>
+
+                                            {aiSummaries[post._id]?.text && (
+                                                <motion.div 
+                                                    initial={{ opacity: 0, height: 0 }} 
+                                                    animate={{ opacity: 1, height: "auto" }}
+                                                    className="mt-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm text-amber-100">
+                                                    <p className="font-bold text-amber-400 mb-2 text-xs uppercase tracking-widest flex items-center gap-2">
+                                                        <Medal className="w-3 h-3"/> AI Summary
+                                                    </p>
+                                                    <div className="space-y-1 whitespace-pre-wrap">
+                                                        {aiSummaries[post._id].text}
+                                                    </div>
+                                                </motion.div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

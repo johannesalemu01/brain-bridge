@@ -95,6 +95,7 @@ export const communityApi = {
   getPosts: (groupId: string) => api.get(`/community/groups/${groupId}/posts`),
   upvotePost: (postId: string) => api.put(`/community/posts/${postId}/upvote`),
   createComment: (postId: string, data: any) => api.post(`/community/posts/${postId}/comments`, data),
+  summarizePost: (postId: string) => api.post(`/community/posts/${postId}/summarize`),
 };
 
 export default api;
