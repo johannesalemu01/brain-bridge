@@ -13,6 +13,7 @@ const qaRoutes = require("./src/routes/qa.routes");
 const voiceRoutes = require("./src/routes/voice.routes");
 const dashboardRoutes = require("./src/routes/dashboard.routes");
 const communityRoutes = require("./src/routes/community.routes");
+const paymentRoutes = require("./src/routes/payment.routes");
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use("/api/qa", qaRoutes);
 app.use("/api/voice", voiceRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/community", communityRoutes);
+app.use("/api/payments", paymentRoutes);
 
 // ── Health Check ──
 app.get("/api/health", (req, res) => {

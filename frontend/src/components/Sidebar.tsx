@@ -9,6 +9,7 @@ import {
   Mic,
   MessagesSquare,
   Users,
+  CreditCard,
   Settings,
   LogOut,
   Menu,
@@ -46,6 +47,7 @@ export default function Sidebar() {
     { name: "Voice Learning", href: "/dashboard/voice", icon: Mic },
     { name: "Q&A Board", href: "/dashboard/qa", icon: MessagesSquare },
     { name: "Community", href: "/dashboard/community", icon: Users },
+    { name: "Subscription", href: "/dashboard/pricing", icon: CreditCard },
   ];
 
   if (user?.role === "teacher") {
